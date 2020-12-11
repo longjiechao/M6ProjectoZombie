@@ -5,7 +5,7 @@
  */
 
 
-var  QuitarMitadZombie = function(ocupar, diff){
+var  QuitarMitadZombie = function(ocupar, pos, diff){
     Element.apply(this, arguments);
     estado = "m";
     this.puntos = 100*diff;

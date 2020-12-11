@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var Estrella = function(ocupar, diff){
+var Estrella = function(ocupar, pos, diff){
     Element.apply(this, arguments);
     estado = "e";
     this.puntos = 100 * diff;

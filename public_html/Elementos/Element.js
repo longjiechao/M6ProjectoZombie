@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-var  Element = function(ocupar){
+var  Element = function(ocupar, pos){
     this.ocupar = ocupar;
+    this.pos = pos;
     estado = "g";
     
     getOcupar = function(){
@@ -15,11 +16,17 @@ var  Element = function(ocupar){
     this.test = function(){
         return this.ocupar + " : " + estado;
     }
+    
+    this.getPos = function(){
+        return pos;
+    }
 }
 
 
 
 
-var casilla = new Element(1);
+var casilla = new Element(1,11);
 console.log(casilla.test());
+console.log(casilla.getPos());
+
 
