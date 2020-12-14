@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var Enemy = function(ocupar, ataque){
+var Enemy = function(ocupar, pos, ataque){
     Element.apply(this, arguments);
     estado = "z";
     this.ataque = ataque;
@@ -13,10 +13,13 @@ var Enemy = function(ocupar, ataque){
         return getOcupar() + " : " + estado + " : " + this.ataque;
     }
     
+    
+    
 }
 
 Enemy.prototype = Object.create(Element.prototype);
 Enemy.prototype.constructor = Enemy;
 
-var enemigo = new Enemy(1, 1);
+var enemigo = new Enemy(1, 15, 1);
 console.log(enemigo.test());
+console.log(enemigo.getPos());

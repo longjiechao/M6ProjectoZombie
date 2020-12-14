@@ -5,7 +5,7 @@
  */
 
 
-var MultiPoints = function(ocupar, diff){
+var MultiPoints = function(ocupar, pos, diff){
     Element.apply(this, arguments);
     estado = "d";
     this.puntos = 100*diff;
@@ -17,5 +17,6 @@ var MultiPoints = function(ocupar, diff){
 MultiPoints.prototype = Object.create(Loot.prototype);
 MultiPoints.prototype.constructor = MultiPoints;
 
-var point = new MultiPoints(1, 0.5);
+var point = new MultiPoints(1, 55, 0.5);
 console.log(point.test());
+console.log(point.getPos());
