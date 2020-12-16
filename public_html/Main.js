@@ -8,11 +8,14 @@
 
 calculoCantidadLoot();
 
+setEnemies();
 
-    
-for (i=0; i < size; i++){
-    for (y=0; y < size; y++){
-        matriz[i][y] = "g";
-        console.log(matriz[i][y]);
-    }
-}
+mostrarTabla();
+
+
+console.log("pointN: " + doublePointsMax/1);
+console.log("halfN: " + halfEnemiesMax/2);
+console.log("laifuN: " + extraLifeMax/3);
+
+
+

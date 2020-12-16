@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 
-var Enemy = function(ocupar, pos, ataque){
+var Enemy = function(ocupar, pos){
     Element.apply(this, arguments);
     estado = "z";
-    this.ataque = ataque;
+    this.daño = 1;
     
     this.test = function(){
-        return getOcupar() + " : " + estado + " : " + this.ataque;
+        return getOcupar() + " : " + estado;
     }
     
     
@@ -20,6 +20,6 @@ var Enemy = function(ocupar, pos, ataque){
 Enemy.prototype = Object.create(Element.prototype);
 Enemy.prototype.constructor = Enemy;
 
-var enemigo = new Enemy(1, 15, 1);
+var enemigo = new Enemy(1, 15);
 console.log(enemigo.test());
 console.log(enemigo.getPos());
