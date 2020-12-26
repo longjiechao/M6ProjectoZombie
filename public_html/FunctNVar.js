@@ -17,7 +17,7 @@ var halfEnemiesMax = 0;
 var extraLifeMax = 0;
 
 //Vectores para guardar los objetos
-var enemies;
+var enemies = new Array();
 var stars;
 var doublePoints;
 var halfEnemies;
@@ -52,11 +52,46 @@ function setTable(){
 }
 
 //pone los enemigos
+
 function setEnemies(){
-    for (i = 0 ; i < enemies ; i++){
-        enemies.push(new Enemy(1,15,1));
+    var num = [];
+    for(i = 0; i < 5; i++){
+        rand = Math.floor(Math.random() * 10) + 1;
+        if (num.includes(rand) == false){
+            while(num.includes(rand) == false){
+                console.log(rand);
+                num[i] = rand;
+            }
+        }else {
+            console.log(rand);
+            num[i] = rand;
+        }
+        
     }
+    
 }
+
+/*function setEnemies(){
+    var numEnemigo = [];
+    
+    for (i = 0 ; i < enemiesMax ; i++){
+        var newpos = 0;
+        while(numEnemigo.includes(newpos) == false){
+            newpos = Math.floor(Math.random() * size*size) + 1;
+            if (numEnemigo.includes(newpos) == false){
+                numEnemigo[i] = newpos;
+            }
+            
+        }
+        console.log("test:" + numEnemigo);
+        
+        
+        console.log(newpos);
+        console.log(Math.floor(newpos/5)+1 + "-" + newpos%5);
+        enemies[i] = new Enemy(1, 15, 1);
+    }
+    console.log(enemies);
+}*/
 
 //pone las estrellas
 function setStars(){
@@ -87,6 +122,21 @@ function setExtraLife(){
     }
 }
 
+//Muestra la tabla, cogela matriz y muestra el contenido
+function mostrarTabla() {
+    for (i=1; i <= 20; i++){
+        for (y=1; y <= 20; y++){
+            matriz[i-1][y-1] = "g";
+            var pos = document.getElementById(i + "-" + y);
+            if(size > i-1 && size > y-1){
+                pos.innerHTML = matriz[i-1][y-1];
+            }else{
+                pos.innerHTML = "";
+            }
+        }
+    }
+} 
+
 
 
 console.log("inicial: " + loot);
@@ -97,6 +147,3 @@ console.log("point: " + doublePointsMax);
 console.log("half: " + halfEnemiesMax);
 console.log("laifu: " + extraLifeMax);
 
-console.log("pointN: " + doublePointsMax/1);
-console.log("halfN: " + halfEnemiesMax/2);
-console.log("laifuN: " + extraLifeMax/3);
