@@ -7,10 +7,10 @@
 var matriz = [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]];
 
 //variables contadores
-var size = 5;
-var enemiesMax = Math.round((size*size)*0.25);
-var starsMax = size;
-var loot = enemiesMax;
+var size;
+var enemiesMax;
+var starsMax;
+var loot;
 
 var doublePointsMax = 0;
 var halfEnemiesMax = 0;
@@ -70,28 +70,6 @@ function setEnemies(){
     }
     
 }
-
-/*function setEnemies(){
-    var numEnemigo = [];
-    
-    for (i = 0 ; i < enemiesMax ; i++){
-        var newpos = 0;
-        while(numEnemigo.includes(newpos) == false){
-            newpos = Math.floor(Math.random() * size*size) + 1;
-            if (numEnemigo.includes(newpos) == false){
-                numEnemigo[i] = newpos;
-            }
-            
-        }
-        console.log("test:" + numEnemigo);
-        
-        
-        console.log(newpos);
-        console.log(Math.floor(newpos/5)+1 + "-" + newpos%5);
-        enemies[i] = new Enemy(1, 15, 1);
-    }
-    console.log(enemies);
-}*/
 
 //pone las estrellas
 function setStars(){
