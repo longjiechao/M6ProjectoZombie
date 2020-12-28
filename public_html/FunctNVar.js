@@ -23,6 +23,47 @@ var doublePoints;
 var halfEnemies;
 var extraLife;
 
+let partida = {
+    matriz = [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],
+    
+    //variables contadores
+    size = 0,
+    enemiesMax = 0,
+    starsMax = 0,
+    loot = 0,
+    
+    doublePointsMax = 0,
+    halfEnemiesMax = 0,
+    extraLifeMax = 0,
+    
+    casillas = 0,
+    caillasPos= [],
+    
+    //Vectores para guardar los objetos
+    enemies = [],
+    stars = [],
+    doublePoints = [],
+    halfEnemies = [],
+    extraLife = [],
+    
+    calculoCantidadLoot : function(){
+    while(this.loot > 0){
+        if(this.loot >= 1){
+            this.doublePointsMax++;
+            this.loot--;
+        }
+        if (this.loot >= 2){
+            this.halfEnemiesMax += 2;
+            this.loot -= 2;
+        }
+        if (this.loot >= 3){
+            this.extraLifeMax += 3;
+            this.loot -= 3;
+        }
+    }
+}
+};
+
 
 //Reparte las recompensas/loot en doublePoints, halfEnemies y extraLife
 function calculoCantidadLoot(){

@@ -4,17 +4,7 @@
  * and open the template in the editor.
  */
 
-botonSelect();
-
-calculoCantidadLoot();
-
-setEnemies();
-
-mostrarTabla();
-
-console.log("pointN: " + doublePointsMax/1);
-console.log("halfN: " + halfEnemiesMax/2);
-console.log("laifuN: " + extraLifeMax/3);
+document.getElementById("level").addEventListener("click", botonSelect);
 
 
 
@@ -27,6 +17,11 @@ function botonSelect(){
     enemiesMax = Math.round((size*size)*0.25);
     starsMax = size;
     loot = enemiesMax;
+    
+    calculoCantidadLoot();
+    setEnemies();
+    mostrarTabla();
+    
 }
 
 function botonRush(){
