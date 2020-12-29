@@ -5,17 +5,14 @@
  */
 
 
-var  QuitarMitadZombie = function(ocupar, pos, diff){
+var  QuitarMitadZombie = function(ocupar, posX, posY, diff){
     Element.apply(this, arguments);
     estado = "m";
     this.puntos = 100*diff;
-    this.test = function(){
-        return getOcupar() + " : " + estado + " : " + this.puntos;
-    }
-}
+};
 
 QuitarMitadZombie.prototype = Object.create(Loot.prototype);
 QuitarMitadZombie.prototype.constructor = QuitarMitadZombie;
 
 var mitad = new QuitarMitadZombie(2, 0.5);
-console.log(mitad.test());
+console.log(mitad);

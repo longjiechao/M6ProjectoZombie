@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-var  Element = function(ocupar, pos){
+var  Element = function(ocupar, posX, posY){
     this.ocupar = ocupar;
-    this.pos = pos;
+    this.posX = posX;
+    this.posY = posY;
     estado = "g";
     
     getOcupar = function(){
@@ -18,7 +19,7 @@ var  Element = function(ocupar, pos){
     }
     
     this.getPos = function(){
-        return pos;
+        return posX + "/" + posY;
     }
 }
 

@@ -5,17 +5,14 @@
  */
 
 
-var VidaExtra = function(ocupar, pos, diff){
+var VidaExtra = function(ocupar, posX, posY, diff){
     Element.apply(this, arguments);
     estado = "v";
     this.puntos = 100*diff;
-    this.test = function(){
-        return getOcupar() + " : " + estado + " : " + this.puntos;
-    }
-}
+};
 
 VidaExtra.prototype = Object.create(Loot.prototype);
 VidaExtra.prototype.constructor = VidaExtra;
 
 var vida = new VidaExtra(3, 0.5);
-console.log(vida.test());
+console.log(vida);

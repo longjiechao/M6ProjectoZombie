@@ -4,19 +4,15 @@
  * and open the template in the editor.
  */
 
-var Estrella = function(ocupar, pos, diff){
+var Estrella = function(ocupar, posX, posY, diff){
     Element.apply(this, arguments);
     estado = "e";
     this.puntos = 100 * diff;
-    
-    this.test = function(){
-        return getOcupar() + " : " + estado + " : " + this.puntos;
-    }
 }
 
 Estrella.prototype = Object.create(Element.prototype);
 Estrella.prototype.constructor = Estrella;
 
 var estrella = new Estrella(1, 0.5);
-console.log(estrella.test());
+console.log(estrella);
 

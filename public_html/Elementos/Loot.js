@@ -5,16 +5,13 @@
  */
 
 
-var Loot = function(ocupar, pos, diff){
+var Loot = function(ocupar, posX, posY, diff){
     Element.apply(this, arguments)
     this.puntos = 100 * diff;
-    this.test = function(){
-        return getOcupar() + " : " + estado + " : " + this.puntos;
-    }
-}
+};
 
 Loot.prototype = Object.create(Element.prototype);
 Loot.prototype.constructor = Loot;
 
 var loot = new Loot(1, 0.5);
-console.log(loot.test());
+console.log(loot);

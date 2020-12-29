@@ -13,14 +13,13 @@ function botonSelect(){
     while((size > 20 || size < 5) || size == null || isNaN(size)){
         size = prompt("Por favor, escoja del 5 a 20");
     }
-    size = size;
-    enemiesMax = Math.round((size*size)*0.25);
-    starsMax = size;
-    loot = enemiesMax;
+    partida.start(size);
     
-    calculoCantidadLoot();
-    setEnemies();
-    mostrarTabla();
+    console.log(partida);
+    
+    console.log("point: " + partida.doublePointsMax);
+    console.log("half: " + partida.halfEnemiesMax);
+    console.log("laifu: " + partida.extraLifeMax);
     
 }
 
