@@ -28,6 +28,20 @@ var partida = {
     halfEnemies : [],
     extraLife : [],
     
+    test : function(){
+        console.log("--Test--");
+        
+        console.log("Size: " + this.size);
+        console.log("enemies: " + this.enemiesMax);
+        console.log("stars: " + this.starsMax);
+        console.log("loot: " + this.loot);
+        console.log("double: " + this.doublePointsMax);
+        console.log("halfene: " + this.halfEnemiesMax);
+        console.log("extralife: " + this.extraLifeMax);
+               
+        console.log("--Test--");
+    },
+    
     start : function(size){
         this.size = size;
         this.enemiesMax = Math.round((size*size)*0.25);
@@ -44,12 +58,14 @@ var partida = {
         for(i = 0; i < this.casillas; i++){
             this.casillasPos[i] = i+1;
         }
-        console.log("array: " + this.casillasPos);
+        console.log(this.casillasPos.length + "nums:  " + this.casillasPos);
         this.setExtraLife();
         this.setHalfEnemies();
         this.setDoublePoints();
         this.setStars();
         this.setEnemies();
+        console.log(this.casillasPos.length + "nums:  " + this.casillasPos);
+
     },
     
     //Reparte las recompensas/loot en doublePoints, halfEnemies y extraLife
@@ -84,35 +100,50 @@ var partida = {
         for(i = 0; i < this.enemiesMax; i++){
             var num;
             num = Math.floor(Math.random() * (this.casillasPos.length-1));
-            console.log(num); 
-            console.log("Pos = " + this.numToPos(num));
+            //console.log(num); 
+            //console.log("Pos = " + this.numToPos(num));
             if (num > -1) {
                 this.casillasPos.splice(num, 1);
-            }
-            console.log("nolose " + this.casillasPos);
-            
+            }            
         }
-        console.log(this.casillasPos);
     },
     
     //pone las estrellas
     setStars : function(){
-        for (i = 0 ; i < this.stars ; i++){
-
+        for (i = 0 ; i < this.starsMax ; i++){
+            var num;
+            num = Math.floor(Math.random() * (this.casillasPos.length-1));
+            //console.log(num); 
+            //console.log("Pos = " + this.numToPos(num));
+            if (num > -1) {
+                this.casillasPos.splice(num, 1);
+            }
         }
     }, 
 
     //pone la recompensa de puntos doble
     setDoublePoints : function(){
         for (i = 0 ; i < this.doublePointsMax ; i++){
-
+            var num;
+            num = Math.floor(Math.random() * (this.casillasPos.length-1));
+            //console.log(num); 
+            //console.log("Pos = " + this.numToPos(num));
+            if (num > -1) {
+                this.casillasPos.splice(num, 1);
+            }
         }
     },
 
     //pone la recompensa de quitar mitad enemigos
     setHalfEnemies : function(){
         for (i = 0 ; i < this.halfEnemiesMax ; i++){
-
+            var num;
+            num = Math.floor(Math.random() * (this.casillasPos.length-1));
+            //console.log(num); 
+            //console.log("Pos = " + this.numToPos(num));
+            if (num > -1) {
+                this.casillasPos.splice(num, 1);
+            }
         }
     },
 
@@ -120,7 +151,13 @@ var partida = {
     //pone la recompensa de vida extra
     setExtraLife : function(){
         for (i = 0 ; i < this.extraLifeMax ; i++){
-
+            var num;
+            num = Math.floor(Math.random() * (this.casillasPos.length-1));
+            //console.log(num); 
+            //console.log("Pos = " + this.numToPos(num));
+            if (num > -1) {
+                this.casillasPos.splice(num, 1);
+            }
         }
     },
     

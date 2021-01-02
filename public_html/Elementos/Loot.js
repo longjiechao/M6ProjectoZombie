@@ -5,7 +5,7 @@
  */
 
 
-var Loot = function(ocupar, posX, posY, diff){
+var Loot = function(ocupar, pos, diff){
     Element.apply(this, arguments)
     this.puntos = 100 * diff;
 };

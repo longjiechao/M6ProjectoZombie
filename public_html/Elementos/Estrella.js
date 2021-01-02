@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 
-var Estrella = function(ocupar, posX, posY, diff){
+var Estrella = function(ocupar, pos, diff){
     Element.apply(this, arguments);
     estado = "e";
     this.puntos = 100 * diff;
-}
+};
 
 Estrella.prototype = Object.create(Element.prototype);
 Estrella.prototype.constructor = Estrella;

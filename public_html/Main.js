@@ -15,11 +15,9 @@ function botonSelect(){
     }
     partida.start(size);
     
-    console.log(partida);
+    //console.log(partida);
     
-    console.log("point: " + partida.doublePointsMax);
-    console.log("half: " + partida.halfEnemiesMax);
-    console.log("laifu: " + partida.extraLifeMax);
+    partida.test();
     
 }
 

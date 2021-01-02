@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var Enemy = function(ocupar, posX, posY){
+var Enemy = function(ocupar, pos){
     Element.apply(this, arguments);
     estado = "z";
     this.daño = 1;
