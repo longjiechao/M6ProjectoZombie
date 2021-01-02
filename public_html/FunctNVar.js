@@ -58,13 +58,13 @@ var partida = {
         for(i = 0; i < this.casillas; i++){
             this.casillasPos[i] = i+1;
         }
-        console.log(this.casillasPos.length + "nums:  " + this.casillasPos);
+        console.log(this.casillasPos.length + " nums:  " + this.casillasPos);
         this.setExtraLife();
         this.setHalfEnemies();
         this.setDoublePoints();
         this.setStars();
         this.setEnemies();
-        console.log(this.casillasPos.length + "nums:  " + this.casillasPos);
+        console.log(this.casillasPos.length + " nums:  " + this.casillasPos);
 
     },
     
@@ -98,52 +98,63 @@ var partida = {
     //pone los enemigos
     setEnemies : function(){
         for(i = 0; i < this.enemiesMax; i++){
-            var num;
-            num = Math.floor(Math.random() * (this.casillasPos.length-1));
-            //console.log(num); 
-            //console.log("Pos = " + this.numToPos(num));
-            if (num > -1) {
-                this.casillasPos.splice(num, 1);
-            }            
+            var rand = Math.floor(Math.random() * (this.casillasPos.length-1));
+            var num = this.casillasPos[rand];
+            
+            if (rand > -1) {
+                this.casillasPos.splice(rand, 1);
+            }
+            
+            console.log("rand: "  + num);
+            console.log(this.casillasPos.length + " extralifenums:  " + this.casillasPos);
+            
+            this.enemies[i] = new Enemy(1,this.numToPos(num));
         }
+            console.log(this.enemies);
     },
     
     //pone las estrellas
     setStars : function(){
         for (i = 0 ; i < this.starsMax ; i++){
-            var num;
-            num = Math.floor(Math.random() * (this.casillasPos.length-1));
-            //console.log(num); 
-            //console.log("Pos = " + this.numToPos(num));
-            if (num > -1) {
-                this.casillasPos.splice(num, 1);
+            var rand = Math.floor(Math.random() * (this.casillasPos.length-1));
+            var num = this.casillasPos[rand];
+            
+            if (rand > -1) {
+                this.casillasPos.splice(rand, 1);
             }
+            
+            console.log("rand: "  + num);
+            console.log(this.casillasPos.length + " extralifenums:  " + this.casillasPos);
         }
     }, 
 
     //pone la recompensa de puntos doble
     setDoublePoints : function(){
         for (i = 0 ; i < this.doublePointsMax ; i++){
-            var num;
-            num = Math.floor(Math.random() * (this.casillasPos.length-1));
-            //console.log(num); 
-            //console.log("Pos = " + this.numToPos(num));
-            if (num > -1) {
-                this.casillasPos.splice(num, 1);
+           var rand = Math.floor(Math.random() * (this.casillasPos.length-1));
+            var num = this.casillasPos[rand];
+            
+            if (rand > -1) {
+                this.casillasPos.splice(rand, 1);
             }
+            
+            console.log("rand: "  + num);
+            console.log(this.casillasPos.length + " extralifenums:  " + this.casillasPos);
         }
     },
 
     //pone la recompensa de quitar mitad enemigos
     setHalfEnemies : function(){
         for (i = 0 ; i < this.halfEnemiesMax ; i++){
-            var num;
-            num = Math.floor(Math.random() * (this.casillasPos.length-1));
-            //console.log(num); 
-            //console.log("Pos = " + this.numToPos(num));
-            if (num > -1) {
-                this.casillasPos.splice(num, 1);
+            var rand = Math.floor(Math.random() * (this.casillasPos.length-1));
+            var num = this.casillasPos[rand];
+            
+            if (rand > -1) {
+                this.casillasPos.splice(rand, 1);
             }
+            
+            console.log("rand: "  + num);
+            console.log(this.casillasPos.length + " extralifenums:  " + this.casillasPos);
         }
     },
 
@@ -151,13 +162,15 @@ var partida = {
     //pone la recompensa de vida extra
     setExtraLife : function(){
         for (i = 0 ; i < this.extraLifeMax ; i++){
-            var num;
-            num = Math.floor(Math.random() * (this.casillasPos.length-1));
-            //console.log(num); 
-            //console.log("Pos = " + this.numToPos(num));
-            if (num > -1) {
-                this.casillasPos.splice(num, 1);
+            var rand = Math.floor(Math.random() * (this.casillasPos.length-1));
+            var num = this.casillasPos[rand];
+            
+            if (rand > -1) {
+                this.casillasPos.splice(rand, 1);
             }
+            
+            console.log("rand: "  + num);
+            console.log(this.casillasPos.length + " extralifenums:  " + this.casillasPos);
         }
     },
     
