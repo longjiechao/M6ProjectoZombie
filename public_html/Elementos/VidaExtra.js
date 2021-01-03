@@ -5,9 +5,9 @@
  */
 
 
-var VidaExtra = function(ocupar, posX, posY, diff){
+var VidaExtra = function(ocupar, pos, diff){
     Element.apply(this, arguments);
-    estado = "v";
+    this.estado = "v";
     this.puntos = 100*diff;
 };
 

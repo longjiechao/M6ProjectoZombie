@@ -5,9 +5,9 @@
  */
 
 
-var MultiPoints = function(ocupar, posX, posY, diff){
+var MultiPoints = function(ocupar, pos, diff){
     Element.apply(this, arguments);
-    estado = "d";
+    this.estado = "d";
     this.puntos = 100*diff;
 };
 

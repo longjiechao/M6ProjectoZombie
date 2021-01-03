@@ -8,6 +8,8 @@
 var Loot = function(ocupar, pos, diff){
     Element.apply(this, arguments)
     this.puntos = 100 * diff;
+    
+    
 };
 
 Loot.prototype = Object.create(Element.prototype);

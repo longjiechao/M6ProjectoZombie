@@ -40,9 +40,12 @@ var partida = {
         console.log("extralife: " + this.extraLifeMax);
                
         console.log("--Test--");
+        
+        console.log(this.matriz);
     },
     
     start : function(size){
+        this.rellenarTabla();
         this.size = size;
         this.enemiesMax = Math.round((size*size)*0.25);
         this.starsMax = size;
@@ -86,6 +89,7 @@ var partida = {
         }
     },
     
+    //Poner un numero para saber la posicion en X e Y
     numToPos : function(num){
         num = num-1;
         var x;
@@ -109,6 +113,9 @@ var partida = {
             console.log(this.casillasPos.length + " extralifenums:  " + this.casillasPos);
             
             this.enemies[i] = new Enemy(1,this.numToPos(num));
+            
+            var pos  = document.getElementById(this.enemies[i].getPos());
+            pos.innerHTML = this.enemies[i].getEstado();
         }
             console.log(this.enemies);
     },
@@ -125,6 +132,8 @@ var partida = {
             
             console.log("rand: "  + num);
             console.log(this.casillasPos.length + " extralifenums:  " + this.casillasPos);
+            
+            this.stars[i] = new Estrella(1,this.numToPos(num));
         }
     }, 
 
@@ -140,12 +149,14 @@ var partida = {
             
             console.log("rand: "  + num);
             console.log(this.casillasPos.length + " extralifenums:  " + this.casillasPos);
+            
+            this.doublePoints[i] = new MultiPoints(1,this.numToPos(num));
         }
     },
 
     //pone la recompensa de quitar mitad enemigos
     setHalfEnemies : function(){
-        for (i = 0 ; i < this.halfEnemiesMax ; i++){
+        for (i = 0 ; i < this.halfEnemiesMax/2 ; i++){
             var rand = Math.floor(Math.random() * (this.casillasPos.length-1));
             var num = this.casillasPos[rand];
             
@@ -155,13 +166,15 @@ var partida = {
             
             console.log("rand: "  + num);
             console.log(this.casillasPos.length + " extralifenums:  " + this.casillasPos);
+            
+            this.halfEnemies[i] = new QuitarMitadZombie(1,this.numToPos(num));
         }
     },
 
 
     //pone la recompensa de vida extra
     setExtraLife : function(){
-        for (i = 0 ; i < this.extraLifeMax ; i++){
+        for (i = 0 ; i < this.extraLifeMax/3 ; i++){
             var rand = Math.floor(Math.random() * (this.casillasPos.length-1));
             var num = this.casillasPos[rand];
             
@@ -171,6 +184,16 @@ var partida = {
             
             console.log("rand: "  + num);
             console.log(this.casillasPos.length + " extralifenums:  " + this.casillasPos);
+            
+            this.extraLife[i] = new VidaExtra(1,this.numToPos(num));
+        }
+    },
+    
+    rellenarTabla : function(){
+        for (i=1; i <= 20; i++){
+            for (y=1; y <= 20; y++){
+                this.matriz[i-1][y-1] = "g";
+            }
         }
     },
     
@@ -178,7 +201,6 @@ var partida = {
     mostrarTabla : function(){
         for (i=1; i <= 20; i++){
             for (y=1; y <= 20; y++){
-                this.matriz[i-1][y-1] = "g";
                 var pos = document.getElementById(i + "-" + y);
                 if(this.size > i-1 && this.size > y-1){
                     pos.innerHTML = this.matriz[i-1][y-1];
@@ -187,7 +209,42 @@ var partida = {
                 }
             }
         }
-    } 
+        this.mostrarElementos();     
+    },
+    
+    //muestra los variables en la tabla
+    mostrarElementos : function() {
+//        enemies : [],
+//        stars : [],
+//        doublePoints : [],
+//        halfEnemies : [],
+//        extraLife : [],
+        var pos;
+        for (i = 0; i < this.enemies.length; i++){
+            pos  = document.getElementById(this.enemies[i].getPos());
+            pos.innerHTML = this.enemies[i].getEstado();
+        }
+        
+        for (i = 0; i < this.stars.length; i++){
+            pos  = document.getElementById(this.stars[i].getPos());
+            pos.innerHTML = this.stars[i].getEstado();
+        }
+        
+        for (i = 0; i < this.doublePoints.length; i++){
+            pos  = document.getElementById(this.doublePoints[i].getPos());
+            pos.innerHTML = this.doublePoints[i].getEstado();
+        }
+        
+        for (i = 0; i < this.halfEnemies.length; i++){
+            pos  = document.getElementById(this.halfEnemies[i].getPos());
+            pos.innerHTML = this.halfEnemies[i].getEstado();
+        }
+        
+        for (i = 0; i < this.extraLife.length; i++){
+            pos  = document.getElementById(this.extraLife[i].getPos());
+            pos.innerHTML = this.extraLife[i].getEstado();
+        }
+    }
 };
 
 console.log(partida.size);

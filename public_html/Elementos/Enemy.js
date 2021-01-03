@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 
-var Enemy = function(ocupar, pos){
+var Enemy = function(ocupar, pos, diff){
     Element.apply(this, arguments);
-    estado = "z";
+    this.estado = "z";
     this.daño = 1;
+    this.puntos = -50 * diff;
     
 };
 

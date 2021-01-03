@@ -6,7 +6,7 @@
 
 var Estrella = function(ocupar, pos, diff){
     Element.apply(this, arguments);
-    estado = "e";
+    this.estado = "e";
     this.puntos = 100 * diff;
 };
 
