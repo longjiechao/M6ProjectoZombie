@@ -14,6 +14,3 @@ var Loot = function(ocupar, pos, diff){
 
 Loot.prototype = Object.create(Element.prototype);
 Loot.prototype.constructor = Loot;
-
-var loot = new Loot(1, 0.5);
-console.log(loot);

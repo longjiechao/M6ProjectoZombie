@@ -17,7 +17,7 @@ function botonSelect(){
     
     //console.log(partida);
     
-    partida.test();
+    //partida.test();
     
 }
 

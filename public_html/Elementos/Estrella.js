@@ -12,7 +12,3 @@ var Estrella = function(ocupar, pos, diff){
 
 Estrella.prototype = Object.create(Element.prototype);
 Estrella.prototype.constructor = Estrella;
-
-var estrella = new Estrella(1, 0.5);
-console.log(estrella);
-

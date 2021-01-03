@@ -5,14 +5,31 @@
  */
 
 
-var  QuitarMitadZombie = function(ocupar, pos, diff){
+var  QuitarMitadZombie = function(ocupar, pos, pos2, diff){
     Element.apply(this, arguments);
     this.estado = "m";
+    this.estado2 = "m";
+    
+    this.pos2 = pos2;
     this.puntos = 100*diff;
+    
+    this.getPos = function(n){
+        if (n == 2){
+            return this.pos2;
+        }else{
+            return this.pos;
+        }
+    };
+    
+    this.getEstado = function(n){
+        if (n == 2){
+            return this.estado2;
+        }else{
+            return this.estado;
+        }
+       
+   };
 };
 
 QuitarMitadZombie.prototype = Object.create(Loot.prototype);
 QuitarMitadZombie.prototype.constructor = QuitarMitadZombie;
-
-var mitad = new QuitarMitadZombie(2, 0.5);
-console.log(mitad);

@@ -14,6 +14,3 @@ var Enemy = function(ocupar, pos, diff){
 
 Enemy.prototype = Object.create(Element.prototype);
 Enemy.prototype.constructor = Enemy;
-
-var enemigo = new Enemy(1, 15);
-console.log(enemigo);

@@ -13,6 +13,3 @@ var MultiPoints = function(ocupar, pos, diff){
 
 MultiPoints.prototype = Object.create(Loot.prototype);
 MultiPoints.prototype.constructor = MultiPoints;
-
-var point = new MultiPoints(1, 55, 0.5);
-console.log(point);
