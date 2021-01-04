@@ -251,19 +251,24 @@ var partida = {
                     x += 1;
                     y += 1;
                     console.log("QUERER BAJAR");
-                    if (x+1 >= 0){
+                    if (x+2 < 5){
                         console.log("Ha llegado BAJAR X =  " + x);
                         
                         this.extraLife[i] = new VidaExtra(3,this.numToPos(num), parseInt(x)+1 + "-" + y, parseInt(x)+2 + "-" + y);
                         console.log(this.extraLife[i]);
                         
                         for(ii = 0; ii < this.extraLife[i].getOcupar(); ii++){
-                            console.log(this.extraLife[i].getPos(ii+1)) + "HA" + ii;
-                            
                             var pos  = document.getElementById(this.extraLife[i].getPos(ii));
                             pos.innerHTML = this.extraLife[i].getEstado(ii);
-                            this.matriz[this.numToPosX(num+ii)][this.numToPosY(num)] = this.extraLife[i].getEstado();
+                            this.matriz[this.numToPosX(num)+ii][this.numToPosY(num)] = this.extraLife[i].getEstado();
+                            console.log("--TEST PLACING--");
+                            console.log("Posición: " + this.extraLife[i].getPos(ii+1));
+                            console.log("X " + this.numToPosX(num)+ii);
+                            console.log("Y " + this.numToPosY(num));
+                            
+                            this.casillasPos.splice(rand, 1);
                         }
+                        console.log("--TEST PLACING--");
                         
                         loopCheck = false;
                     }
@@ -272,19 +277,24 @@ var partida = {
                     x += 1;
                     y += 1;
                     console.log("QUERER SUBIR");
-                    if (x-1 < 5){
+                    if (x-2 > 0){
                         console.log("Ha llegado SUBIR X =  " + x);
                         
                         this.extraLife[i] = new VidaExtra(3,this.numToPos(num), (parseInt(x)-1) + "-" + y, (parseInt(x)-2) + "-" + y);
                         console.log(this.extraLife[i]);
                         
                         for(ii = 0; ii < this.extraLife[i].getOcupar(); ii++){
-                            console.log(this.extraLife[i].getPos(ii+1));
-                            
                             var pos  = document.getElementById(this.extraLife[i].getPos(ii));
                             pos.innerHTML = this.extraLife[i].getEstado(ii);
-                            this.matriz[this.numToPosX(num-ii)][this.numToPosY(num)] = this.extraLife[i].getEstado();
+                            this.matriz[this.numToPosX(num)-ii][this.numToPosY(num)] = this.extraLife[i].getEstado();
+                            console.log("--TEST PLACING--");
+                            console.log("Posición: " + this.extraLife[i].getPos(ii+1));
+                            console.log("X " + this.numToPosX(num)-ii);
+                            console.log("Y " + this.numToPosY(num));
+
+
                         }
+                        console.log("--TEST PLACING--");
                         
                         loopCheck = false;
                     }
@@ -292,19 +302,24 @@ var partida = {
                     y += 1;
                     x += 1;
                     console.log("QUERER DERECHA");
-                    if (y+1 < 5){
+                    if (y+2 < 5){
                         console.log("Ha llegado DERECHA Y =  " + y);
                         
                         this.extraLife[i] = new VidaExtra(3,this.numToPos(num), x + "-" + (parseInt(y)+1), x + "-" + (parseInt(y)+2));
                         console.log(this.extraLife[i]);
                         
                         for(ii = 0; ii < this.extraLife[i].getOcupar(); ii++){
-                            console.log(this.extraLife[i].getPos(ii+1));
-                            
                             var pos  = document.getElementById(this.extraLife[i].getPos(ii));
                             pos.innerHTML = this.extraLife[i].getEstado(ii);
-                            this.matriz[this.numToPosX(num)][this.numToPosY(num+ii)] = this.extraLife[i].getEstado();
+                            this.matriz[this.numToPosX(num)][this.numToPosY(num)+ii] = this.extraLife[i].getEstado();
+                            console.log("--TEST PLACING--");
+                            console.log("Posición: " + this.extraLife[i].getPos(ii+1));
+                            console.log("X " + this.numToPosX(num));
+                            console.log("Y " + this.numToPosY(num)+ii);
+
+
                         }
+                        console.log("--TEST PLACING--");
                         
                         loopCheck = false;
                     }
@@ -312,20 +327,25 @@ var partida = {
                     y += 1;
                     x += 1;
                     console.log("QUERER IZQUIERDA");
-                    if (y-1 >= 0){
+                    if (y-2 > 0){
                         console.log("Ha llegado IZQUIERDA Y =  " + y);
                         
                         this.extraLife[i] = new VidaExtra(3,this.numToPos(num), x + "-" + (parseInt(y)-1), x + "-" + (parseInt(y)-2));
                         console.log(this.extraLife[i]);
                         
                         for(ii = 0; ii < this.extraLife[i].getOcupar(); ii++){
-                            console.log(this.extraLife[i].getPos(ii+1));
-                            
                             var pos  = document.getElementById(this.extraLife[i].getPos(ii));
                             pos.innerHTML = this.extraLife[i].getEstado(ii);
-                            this.matriz[this.numToPosX(num)][this.numToPosY(num-ii)] = this.extraLife[i].getEstado();
+                            this.matriz[this.numToPosX(num)][this.numToPosY(num)-ii] = this.extraLife[i].getEstado();
+                            console.log("--TEST PLACING--");
+                            console.log("Posición: " + this.extraLife[i].getPos(ii+1));
+                            console.log("X " + this.numToPosX(num));
+                            console.log("Y " + this.numToPosY(num)-ii);
+
+
                         }
-                        
+                        console.log("--TEST PLACING--");
+                                               
                         loopCheck = false;
                     }
                 }
