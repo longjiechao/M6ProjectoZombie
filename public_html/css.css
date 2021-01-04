@@ -10,7 +10,7 @@ and open the template in the editor.
 body {
     background-color: #4CAF50;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
-    color: white;
+    color: black;
 }
 .myTable {
     background-color:#eee;
@@ -92,6 +92,7 @@ body {
 }
 
 
-th{
+tr{
     text-align: left;
+    
 }
