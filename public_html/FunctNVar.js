@@ -266,6 +266,8 @@ var partida = {
                             console.log("X " + this.numToPosX(num)+ii);
                             console.log("Y " + this.numToPosY(num));
                             
+                            
+                            
                             this.casillasPos.splice(rand, 1);
                         }
                         console.log("--TEST PLACING--");
