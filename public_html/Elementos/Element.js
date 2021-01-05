@@ -10,12 +10,14 @@ var  Element = function(ocupar, pos, diff){
     this.estado = "e";
     this.puntos = 0 * diff;
     
+    this.img = "";
+    
     this.getPuntos = function(){
         return this.puntos;
     }
     
     this.getOcupar = function(){
-        return ocupar;
+        return this.ocupar;
     };
     
     this.test = function(){
@@ -27,7 +29,11 @@ var  Element = function(ocupar, pos, diff){
    };
     
     this.getPos = function(){
-        return pos;
+        return this.pos;
     };
+    
+    this.getImg = function(){
+        return this.img;
+    }
 };
 

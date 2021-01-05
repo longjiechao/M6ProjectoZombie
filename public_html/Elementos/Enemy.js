@@ -9,6 +9,7 @@ var Enemy = function(ocupar, pos, diff){
     this.estado = "z";
     this.daño = 1;
     this.puntos = -50 * diff;
+    this.img = "gfx/Enemy" + Math.floor((Math.random() * 4) + 1); + ".png";
     
 };
 
