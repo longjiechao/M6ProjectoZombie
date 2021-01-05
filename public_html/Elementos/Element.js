@@ -9,7 +9,6 @@ var  Element = function(ocupar, pos, diff){
     this.pos = pos;
     this.estado = "e";
     this.puntos = 0 * diff;
-    
     this.img = "";
     
     this.getPuntos = function(){

@@ -43,10 +43,10 @@ var partida = {
         
         console.log(this.matriz);
     },
-    
+
     start : function(size){
         this.restart();
-        this.rellenarTabla();
+        this.rellenarTablaG();
         this.size = size;
         this.enemiesMax = Math.round((size*size)*0.25);
         this.starsMax = size;
@@ -54,6 +54,7 @@ var partida = {
         this.casillas = size*size;
         this.calculoCantidadLoot();
         this.setLoot();
+        this.rellenarTabla();
         this.mostrarTabla();
     },
     
@@ -457,27 +458,53 @@ var partida = {
         }
     },
     
-    rellenarTabla : function(){
-        for (i=1; i <= 20; i++){
-            for (y=1; y <= 20; y++){
-                this.matriz[i-1][y-1] = "g";
+    rellenarTablaG : function(){
+        for (i=0; i < 20; i++){
+            for (y=0; y < 20; y++){
+                this.matriz[i][y] = "g";
             }
         }
     },
     
     //Muestra la tabla, cogela matriz y muestra el contenido
-    mostrarTabla : function(){
+    rellenarTabla : function(){
         for (i=1; i <= 20; i++){
             for (y=1; y <= 20; y++){
                 var pos = document.getElementById(i + "-" + y);
                 if(this.size > i-1 && this.size > y-1){
+                    //pos.innerHTML = "<button id='" + files + "-" + columnes + "' class='btcaselles'><img src='" + imatge + "></button>";
                     pos.innerHTML = this.matriz[i-1][y-1];
                 }else{
-                    pos.innerHTML = "";
+                    pos.innerHTML = "<img src='gfx/lock.png'>";
                 }
             }
         }
         //this.mostrarElementos();     
+    },
+    
+    checkMinus : function(x,y){
+        console.log("X1; " + x + " Y1: " + y);
+        if(this.matriz[i][y] === "g" || this.matriz[i][y] === "v" || this.matriz[i][y] === "m" || this.matriz[i][y] === "d" || this.matriz[i][y] === "e" || this.matriz[i][y] === "z"){
+            return true;
+        }else{
+            return false;
+        }
+    },
+    
+    mostrarTabla : function(){
+        console.log();
+        for (i=1; i <= 20; i++){
+            for (y=1; y <= 20; y++){
+                if(this.size > i-1 && this.size > y-1){
+                    var pos = document.getElementById(i + "-" + y);
+                    var X = i-1;
+                    var Y = y-1;
+                    if(this.matriz[X][Y] === "g" || this.matriz[X][Y] === "v" || this.matriz[X][Y] === "m" || this.matriz[X][Y] === "d" || this.matriz[X][Y] === "e" || this.matriz[X][Y] === "z"){
+                        pos.innerHTML = "<button id='" + i + "-" + y + "'><img src='gfx/unrev.png'></button>"
+                    }
+                }
+            }
+        }
     },
     
     //muestra los variables en la tabla
