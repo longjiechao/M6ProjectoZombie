@@ -9,6 +9,7 @@ var MultiPoints = function(ocupar, pos, diff){
     Element.apply(this, arguments);
     this.estado = "d";
     this.puntos = 100*diff;
+    this.img = "gfx/x2.png";
 };
 
 MultiPoints.prototype = Object.create(Loot.prototype);

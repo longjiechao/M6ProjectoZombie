@@ -8,6 +8,7 @@ var Estrella = function(ocupar, pos, diff){
     Element.apply(this, arguments);
     this.estado = "e";
     this.puntos = 100 * diff;
+    this.img = "gfx/star.png";
 };
 
 Estrella.prototype = Object.create(Element.prototype);

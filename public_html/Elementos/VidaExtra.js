@@ -13,6 +13,7 @@ var VidaExtra = function(ocupar, pos, pos2, pos3, diff){
     this.pos2 = pos2;
     this.pos3 = pos3;
     this.puntos = 100*diff;
+    this.img = "gfx/1up.png";
     
     this.getPos = function(n){
         if (n == 3){
