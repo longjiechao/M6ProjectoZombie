@@ -12,8 +12,16 @@ var VidaExtra = function(ocupar, pos, pos2, pos3, diff){
     this.estado3 = "v";
     this.pos2 = pos2;
     this.pos3 = pos3;
-    this.puntos = 100*diff;
+    this.puntos = 100*(diff/100);
     this.img = "gfx/1up.png";
+    
+    this.restante = 3;
+    
+    this.activar = function(){
+        if(this.restante == 0){
+            return true;
+        }else return false;
+    }
     
     this.descubrir = function(n){
         if (n == 3){

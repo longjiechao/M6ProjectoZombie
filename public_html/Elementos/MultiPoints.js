@@ -8,7 +8,7 @@
 var MultiPoints = function(ocupar, pos, diff){
     Element.apply(this, arguments);
     this.estado = "d";
-    this.puntos = 100*diff;
+    this.puntos = 100*(diff/100);
     this.img = "gfx/x2.png";
 };
 

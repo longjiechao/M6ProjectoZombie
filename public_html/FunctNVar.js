@@ -28,6 +28,27 @@ var partida = {
     halfEnemies : [],
     extraLife : [],
     
+    //Getters
+    getSize: function(){
+        return this.size;
+    },
+    getEnemiesMax : function(){
+        return this.enemiesMax;
+    },
+    getStarsMax : function(){
+        return this.halfEnemiesMax;
+    },
+    getDoublePointsMax : function(){
+        return this.doublePointsMax;
+    },
+    getHalfEnemiesMax : function(){
+        return this.halfEnemiesMax;
+    },
+    getExtraLifeMax : function(){
+        return this.extraLifeMax;
+    },
+    
+    
     test : function(){
         console.log("--Test Variables--");
         
@@ -55,7 +76,7 @@ var partida = {
         this.calculoCantidadLoot();
         this.setLoot();
         this.rellenarTabla();
-        this.mostrarTabla();
+        //this.mostrarTabla();
     },
     
     restart : function(){
@@ -82,9 +103,7 @@ var partida = {
         var letra = this.matriz[x][y];
         if (letra == "g"){
             this.matriz[x][y] = "G";
-            console.log("si");
         }else{
-            console.log("no");
             switch(letra){
                 case "v":
                     console.log("v");
@@ -145,6 +164,7 @@ var partida = {
             }
         }
         console.log(this.matriz);
+        this.mostrarTabla();
     },
     
     cambio : function(){
@@ -550,15 +570,65 @@ var partida = {
         }
     },
     
+    cambiarSprite : function(){
+        
+//        case "G":
+//            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/empty.png'></button>";
+//            break;
+//        case "V":
+//            for(i = 0; i < this.extraLife.length; i++){
+//                if(this.extraLife[i].getPos() == posID){
+//                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.extraLife[i].getImg();+ "'></button>";
+//                    console.log("Dibujar");
+//                    break;
+//                };
+//            };
+//            break;
+//        case "M":
+//            for(i = 0; i < this.halfEnemies.length; i++){
+//                if(this.halfEnemies[i].getPos() == posID){
+//                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.halfEnemies[i].getImg();+ "'></button>";
+//                    console.log("Dibujar");
+//                    break;
+//                };
+//            };
+//            break;
+//        case "D":
+//            for(i = 0; i < this.doublePoints.length; i++){
+//                if(this.doublePoints[i].getPos() == posID){
+//                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.doublePoints[i].getImg();+ "'></button>";
+//                    console.log("Dibujar");
+//                    break;
+//                };
+//            };
+//            break;
+//        case "E":
+//            for(i = 0; i < this.stars.length; i++){
+//                if(this.stars[i].getPos() == posID){
+//                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.stars[i].getImg();+ "'></button>";
+//                    console.log("Dibujar");
+//                    break;
+//                };
+//            };
+//            break;
+//        case "Z":
+//            for(i = 0; i < this.enemies.length; i++){
+//                if(this.enemies[i].getPos() == posID){
+//                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.enemies[i].getImg();+ "'></button>";
+//                    console.log("Dibujar");
+//                    break;
+//                };
+//            };
+//            break;
+    },
+    
     mostrarTabla : function(){
-        console.log();
         for (i=1; i <= 20; i++){
             for (y=1; y <= 20; y++){
                 if(this.size > i-1 && this.size > y-1){
                     var pos = document.getElementById(i + "-" + y);
                     var X = i-1;
-                    var Y = y-1;
-                    
+                    var Y = y-1;                 
                     switch(this.matriz[X][Y]){
                         case "g":
                         case "v":
@@ -567,44 +637,6 @@ var partida = {
                         case "e":
                         case "z":
                             pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/unrev.png'></button>";
-                            break;
-                        case "G":
-                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/empty.png'></button>";
-                            break;
-                        case "V":
-                            for(i = 0; i < this.extraLife.length; i++){
-                                if(this.extraLife[i].getPos() == this.posToNum(x,y)){
-                                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.extraLife[i].getImg();+ "'></button>";
-                                };
-                            };
-                            break;
-                        case "M":
-                            for(i = 0; i < this.halfEnemies.length; i++){
-                                if(this.halfEnemies[i].getPos() == this.posToNum(x,y)){
-                                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.halfEnemies[i].getImg();+ "'></button>";
-                                };
-                            };
-                            break;
-                        case "D":
-                            for(i = 0; i < this.doublePoints.length; i++){
-                                if(this.doublePoints[i].getPos() == this.posToNum(x,y)){
-                                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.doublePoints[i].getImg();+ "'></button>";
-                                };
-                            };
-                            break;
-                        case "E":
-                            for(i = 0; i < this.stars.length; i++){
-                                if(this.stars[i].getPos() == this.posToNum(x,y)){
-                                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.stars[i].getImg();+ "'></button>";
-                                };
-                            };
-                            break;
-                        case "Z":
-                            for(i = 0; i < this.enemies.length; i++){
-                                if(this.enemies[i].getPos() == this.posToNum(x,y)){
-                                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.enemies[i].getImg();+ "'></button>";
-                                };
-                            };
                             break;
                     }             
                 }

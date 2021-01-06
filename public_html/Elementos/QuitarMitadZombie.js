@@ -11,8 +11,15 @@ var  QuitarMitadZombie = function(ocupar, pos, pos2, diff){
     this.estado2 = "m";
     
     this.pos2 = pos2;
-    this.puntos = 100*diff;
+    this.puntos = 100*(diff/100);
     this.img = "gfx/halfEnemy.png";
+    this.restante = 2;
+    
+    this.activar = function(){
+        if(this.restante == 0){
+            return true;
+        }else return false;
+    }
     
     this.descubrir = function(n){
         if(n == 2){

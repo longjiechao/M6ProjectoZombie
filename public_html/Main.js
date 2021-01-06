@@ -15,7 +15,7 @@ function play(){
     console.log(x + "-" + y);
     partida.buscarElemento(x, y);
     partida.rellenarTabla();
-    partida.mostrarTabla()
+    //partida.mostrarTabla()
 }
 
 function botonSelect(){
@@ -28,7 +28,9 @@ function botonSelect(){
     console.log("TESTO");
     //console.log(partida);
     //partida.test();
+    stats.statInicial(partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
 }
+
 
 function botonRush(){
     size = 5;
