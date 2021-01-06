@@ -14,6 +14,14 @@ var  QuitarMitadZombie = function(ocupar, pos, pos2, diff){
     this.puntos = 100*diff;
     this.img = "gfx/halfEnemy.png";
     
+    this.descubrir = function(n){
+        if(n == 2){
+            this.estado2 = this.estado2.toUpperCase();
+        }else{
+            this.estado = this.estado.toUpperCase();
+        }
+    };
+    
     this.getPos = function(n){
         if (n == 2){
             return this.pos2;
@@ -28,7 +36,6 @@ var  QuitarMitadZombie = function(ocupar, pos, pos2, diff){
         }else{
             return this.estado;
         }
-       
    };
 };
 

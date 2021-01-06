@@ -15,7 +15,7 @@ function play(){
     console.log(x + "-" + y);
     partida.buscarElemento(x, y);
     partida.rellenarTabla();
-    //partida.mostrarTabla()
+    partida.mostrarTabla()
 }
 
 function botonSelect(){

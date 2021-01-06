@@ -55,7 +55,7 @@ var partida = {
         this.calculoCantidadLoot();
         this.setLoot();
         this.rellenarTabla();
-        //this.mostrarTabla();
+        this.mostrarTabla();
     },
     
     restart : function(){
@@ -89,30 +89,33 @@ var partida = {
                 case "v":
                     console.log("v");
                     for(i = 0; i < this.extraLife.length; i++){
-                        console.log(this.extraLife[i].getPos() + "AAA" + this.posToNum(x,y))
-                        if(this.extraLife[i].getPos() == this.posToNum(x,y)){
-                            this.extraLife[i].descubrir();
-                            this.matriz[x][y] = this.extraLife[i].getEstado();
-                            console.log(this.extraLife[i].getEstado());
-                        };
-                    };
+                        for (ii = 1; ii <= 3; ii++){
+                            if(this.extraLife[i].getPos(ii) == this.numToPos(this.posToNum(x,y))){
+                                this.extraLife[i].descubrir(ii);
+                                this.matriz[x][y] = this.extraLife[i].getEstado(ii);
+                                console.log(this.extraLife[i].getEstado(ii));
+                            }
+                        }
+                    }
                     break;
                 case "m":
                     console.log("m");
                     for(i = 0; i < this.halfEnemies.length; i++){
-                        console.log(this.halfEnemies[i].getPos() + "AAA" + this.posToNum(x,y))
-                        if(this.halfEnemies[i].getPos() == this.posToNum(x,y)){
-                            this.halfEnemies[i].descubrir();
-                            this.matriz[x][y] = this.halfEnemies[i].getEstado();
-                            console.log(this.halfEnemies[i].getEstado());
-                        };
-                    };
+                        for (ii = 1; ii <= 2; ii++){
+                            console.log(this.halfEnemies[i].getPos(ii) + " TESTO " + this.numToPos(this.posToNum(x,y)));
+                            if(this.halfEnemies[i].getPos(ii) == this.numToPos(this.posToNum(x,y))){
+                                this.halfEnemies[i].descubrir(ii);
+                                this.matriz[x][y] = this.halfEnemies[i].getEstado(ii);
+                                console.log("ESTADO? " + this.halfEnemies[i].getEstado(ii));
+                            }
+                        }
+                    }
+                    console.log(this.halfEnemies);
                     break;
                 case "d":
                     console.log("d");
                     for(i = 0; i < this.doublePoints.length; i++){
-                        console.log(this.doublePoints[i].getPos() + "AAA" + this.posToNum(x,y))
-                        if(this.doublePoints[i].getPos() == this.posToNum(x,y)){
+                        if(this.doublePoints[i].getPos() == this.numToPos(this.posToNum(x,y))){
                             this.doublePoints[i].descubrir();
                             this.matriz[x][y] = this.doublePoints[i].getEstado();
                             console.log(this.doublePoints[i].getEstado());
@@ -122,8 +125,7 @@ var partida = {
                 case "e":
                     console.log("e");
                     for(i = 0; i < this.stars.length; i++){
-                        console.log(this.stars[i].getPos() + "AAA" + this.posToNum(x,y))
-                        if(this.stars[i].getPos() == this.posToNum(x,y)){
+                        if(this.stars[i].getPos() == this.numToPos(this.posToNum(x,y))){
                             this.stars[i].descubrir();
                             this.matriz[x][y] = this.stars[i].getEstado();
                             console.log(this.stars[i].getEstado());
@@ -133,8 +135,7 @@ var partida = {
                 case "z":
                     console.log("z");
                     for(i = 0; i < this.enemies.length; i++){
-                        console.log(this.enemies[i].getPos() + "AAA" + this.posToNum(x,y))
-                        if(this.enemies[i].getPos() == this.posToNum(x,y)){
+                        if(this.enemies[i].getPos() == this.numToPos(this.posToNum(x,y))){
                             this.enemies[i].descubrir();
                             this.matriz[x][y] = this.enemies[i].getEstado();
                             console.log(this.enemies[i].getEstado());
@@ -296,7 +297,7 @@ var partida = {
                     if (x+1 < 5 && this.matriz[x][y-1] == "g"){
                         console.log("Ha llegado BAJAR X =  " + x);
                         
-                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), parseInt(x)+1 + "-" + y, parseInt(x)+2 + "-" + y, this.size);
+                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), parseInt(x)+1 + "-" + y, this.size);
                         console.log(this.halfEnemies[i]);
                         
                         for(ii = 0; ii < this.halfEnemies[i].getOcupar(); ii++){
@@ -322,7 +323,7 @@ var partida = {
                     if (x-1 > 0 && this.matriz[x-2][y-1] == "g"){
                         console.log("Ha llegado SUBIR X =  " + x);
                         
-                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), (parseInt(x)-1) + "-" + y, (parseInt(x)-2) + "-" + y, this.size);
+                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), (parseInt(x)-1) + "-" + y, this.size);
                         console.log(this.halfEnemies[i]);
                         
                         for(ii = 0; ii < this.halfEnemies[i].getOcupar(); ii++){
@@ -349,7 +350,7 @@ var partida = {
                     if (y+1 < 5 && this.matriz[x-1][y] == "g"){
                         console.log("Ha llegado DERECHA Y =  " + y);
                         
-                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), x + "-" + (parseInt(y)+1), x + "-" + (parseInt(y)+2), this.size);
+                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), x + "-" + (parseInt(y)+1), this.size);
                         console.log(this.halfEnemies[i]);
                         
                         for(ii = 0; ii < this.halfEnemies[i].getOcupar(); ii++){
@@ -375,7 +376,7 @@ var partida = {
                     if (y-1 > 0 && this.matriz[x-1][y-2] == "g"){
                         console.log("Ha llegado IZQUIERDA Y =  " + y);
                         
-                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), x + "-" + (parseInt(y)-1), x + "-" + (parseInt(y)-2), this.size);
+                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), x + "-" + (parseInt(y)-1), this.size);
                         console.log(this.halfEnemies[i]);
                         
                         for(ii = 0; ii < this.halfEnemies[i].getOcupar(); ii++){
@@ -393,13 +394,6 @@ var partida = {
                     }
                 }
             }
-            
-            this.halfEnemies[i] = new QuitarMitadZombie(1,this.numToPos(num));
-            
-            var pos  = document.getElementById(this.halfEnemies[i].getPos());
-            pos.innerHTML = this.halfEnemies[i].getEstado();
-            
-            this.matriz[this.numToPosX(num)][this.numToPosY(num)] = this.halfEnemies[i].getEstado();
         }
     },
 
