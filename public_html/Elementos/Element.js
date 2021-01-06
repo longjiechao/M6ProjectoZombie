@@ -11,9 +11,13 @@ var  Element = function(ocupar, pos, diff){
     this.puntos = 0 * diff;
     this.img = "";
     
+    this.descubrir = function(){
+        this.estado = this.estado.toUpperCase();
+    };
+    
     this.getPuntos = function(){
         return this.puntos;
-    }
+    };
     
     this.getOcupar = function(){
         return this.ocupar;

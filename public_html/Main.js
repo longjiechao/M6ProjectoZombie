@@ -7,10 +7,15 @@
 document.getElementById("level").addEventListener("click", botonSelect);
 document.getElementById("submit").addEventListener("click", play);
 
+
+
 function play(){
     var x = document.getElementById("X").value;
     var y = document.getElementById("Y").value;
     console.log(x + "-" + y);
+    partida.buscarElemento(x, y);
+    partida.rellenarTabla();
+    //partida.mostrarTabla()
 }
 
 function botonSelect(){

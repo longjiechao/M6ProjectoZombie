@@ -55,7 +55,7 @@ var partida = {
         this.calculoCantidadLoot();
         this.setLoot();
         this.rellenarTabla();
-        this.mostrarTabla();
+        //this.mostrarTabla();
     },
     
     restart : function(){
@@ -74,6 +74,80 @@ var partida = {
         this.doublePoints = [];
         this.halfEnemies = [];
         this.extraLife = [];
+    },
+    
+    buscarElemento : function(x, y){
+        x--;
+        y--;
+        var letra = this.matriz[x][y];
+        if (letra == "g"){
+            this.matriz[x][y] = "G";
+            console.log("si");
+        }else{
+            console.log("no");
+            switch(letra){
+                case "v":
+                    console.log("v");
+                    for(i = 0; i < this.extraLife.length; i++){
+                        console.log(this.extraLife[i].getPos() + "AAA" + this.posToNum(x,y))
+                        if(this.extraLife[i].getPos() == this.posToNum(x,y)){
+                            this.extraLife[i].descubrir();
+                            this.matriz[x][y] = this.extraLife[i].getEstado();
+                            console.log(this.extraLife[i].getEstado());
+                        };
+                    };
+                    break;
+                case "m":
+                    console.log("m");
+                    for(i = 0; i < this.halfEnemies.length; i++){
+                        console.log(this.halfEnemies[i].getPos() + "AAA" + this.posToNum(x,y))
+                        if(this.halfEnemies[i].getPos() == this.posToNum(x,y)){
+                            this.halfEnemies[i].descubrir();
+                            this.matriz[x][y] = this.halfEnemies[i].getEstado();
+                            console.log(this.halfEnemies[i].getEstado());
+                        };
+                    };
+                    break;
+                case "d":
+                    console.log("d");
+                    for(i = 0; i < this.doublePoints.length; i++){
+                        console.log(this.doublePoints[i].getPos() + "AAA" + this.posToNum(x,y))
+                        if(this.doublePoints[i].getPos() == this.posToNum(x,y)){
+                            this.doublePoints[i].descubrir();
+                            this.matriz[x][y] = this.doublePoints[i].getEstado();
+                            console.log(this.doublePoints[i].getEstado());
+                        };
+                    };
+                    break;
+                case "e":
+                    console.log("e");
+                    for(i = 0; i < this.stars.length; i++){
+                        console.log(this.stars[i].getPos() + "AAA" + this.posToNum(x,y))
+                        if(this.stars[i].getPos() == this.posToNum(x,y)){
+                            this.stars[i].descubrir();
+                            this.matriz[x][y] = this.stars[i].getEstado();
+                            console.log(this.stars[i].getEstado());
+                        };
+                    };
+                    break;
+                case "z":
+                    console.log("z");
+                    for(i = 0; i < this.enemies.length; i++){
+                        console.log(this.enemies[i].getPos() + "AAA" + this.posToNum(x,y))
+                        if(this.enemies[i].getPos() == this.posToNum(x,y)){
+                            this.enemies[i].descubrir();
+                            this.matriz[x][y] = this.enemies[i].getEstado();
+                            console.log(this.enemies[i].getEstado());
+                        };
+                    };
+                    break;
+            }
+        }
+        console.log(this.matriz);
+    },
+    
+    cambio : function(){
+        
     },
     
     //Solo ejecuta 5 funciones y pone varaibles al array casiilasPos, que se utiliza en los sets
@@ -133,15 +207,6 @@ var partida = {
         return (x*this.size + y)+1;
     },
     
-    indexOfCasillasPos: function(num){
-        for (i = 0; i < this.casillaPos.length; i++){
-            if (this.casillasPos[i] == num){
-                return i;
-            }
-        };
-        return -1;
-        
-    },
     
     //pone los enemigos
     setEnemies : function(){
@@ -156,7 +221,7 @@ var partida = {
             console.log("rand: "  + num);
             console.log(this.casillasPos.length + " ENEMYnums:  " + this.casillasPos);
             
-            this.enemies[i] = new Enemy(1,this.numToPos(num));
+            this.enemies[i] = new Enemy(1,this.numToPos(num),this.size);
             
             var pos  = document.getElementById(this.enemies[i].getPos());
             pos.innerHTML = this.enemies[i].getEstado();
@@ -178,7 +243,7 @@ var partida = {
             console.log("rand: "  + num);
             console.log(this.casillasPos.length + " STARSnums:  " + this.casillasPos);
             
-            this.stars[i] = new Estrella(1,this.numToPos(num));
+            this.stars[i] = new Estrella(1,this.numToPos(num), this.size);
             
             var pos  = document.getElementById(this.stars[i].getPos());
             pos.innerHTML = this.stars[i].getEstado();
@@ -200,7 +265,7 @@ var partida = {
             console.log("rand: "  + num);
             console.log(this.casillasPos.length + " DOUBLEPenums:  " + this.casillasPos);
             
-            this.doublePoints[i] = new MultiPoints(1,this.numToPos(num));
+            this.doublePoints[i] = new MultiPoints(1,this.numToPos(num), this.size);
             
             var pos  = document.getElementById(this.doublePoints[i].getPos());
             pos.innerHTML = this.doublePoints[i].getEstado();
@@ -231,7 +296,7 @@ var partida = {
                     if (x+1 < 5 && this.matriz[x][y-1] == "g"){
                         console.log("Ha llegado BAJAR X =  " + x);
                         
-                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), parseInt(x)+1 + "-" + y, parseInt(x)+2 + "-" + y);
+                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), parseInt(x)+1 + "-" + y, parseInt(x)+2 + "-" + y, this.size);
                         console.log(this.halfEnemies[i]);
                         
                         for(ii = 0; ii < this.halfEnemies[i].getOcupar(); ii++){
@@ -257,7 +322,7 @@ var partida = {
                     if (x-1 > 0 && this.matriz[x-2][y-1] == "g"){
                         console.log("Ha llegado SUBIR X =  " + x);
                         
-                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), (parseInt(x)-1) + "-" + y, (parseInt(x)-2) + "-" + y);
+                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), (parseInt(x)-1) + "-" + y, (parseInt(x)-2) + "-" + y, this.size);
                         console.log(this.halfEnemies[i]);
                         
                         for(ii = 0; ii < this.halfEnemies[i].getOcupar(); ii++){
@@ -284,7 +349,7 @@ var partida = {
                     if (y+1 < 5 && this.matriz[x-1][y] == "g"){
                         console.log("Ha llegado DERECHA Y =  " + y);
                         
-                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), x + "-" + (parseInt(y)+1), x + "-" + (parseInt(y)+2));
+                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), x + "-" + (parseInt(y)+1), x + "-" + (parseInt(y)+2), this.size);
                         console.log(this.halfEnemies[i]);
                         
                         for(ii = 0; ii < this.halfEnemies[i].getOcupar(); ii++){
@@ -310,7 +375,7 @@ var partida = {
                     if (y-1 > 0 && this.matriz[x-1][y-2] == "g"){
                         console.log("Ha llegado IZQUIERDA Y =  " + y);
                         
-                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), x + "-" + (parseInt(y)-1), x + "-" + (parseInt(y)-2));
+                        this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), x + "-" + (parseInt(y)-1), x + "-" + (parseInt(y)-2), this.size);
                         console.log(this.halfEnemies[i]);
                         
                         for(ii = 0; ii < this.halfEnemies[i].getOcupar(); ii++){
@@ -360,7 +425,7 @@ var partida = {
                     if (x+2 < 5 && this.matriz[x][y-1] == "g" && this.matriz[x+1][y-1] == "g"){
                         console.log("Ha llegado BAJAR X =  " + x);
                         
-                        this.extraLife[i] = new VidaExtra(3,this.numToPos(num), parseInt(x)+1 + "-" + y, parseInt(x)+2 + "-" + y);
+                        this.extraLife[i] = new VidaExtra(3,this.numToPos(num), parseInt(x)+1 + "-" + y, parseInt(x)+2 + "-" + y, this.size);
                         console.log(this.extraLife[i]);
                         
                         for(ii = 0; ii < this.extraLife[i].getOcupar(); ii++){
@@ -384,7 +449,7 @@ var partida = {
                     if (x-2 > 0 && this.matriz[x-2][y-1] == "g" && this.matriz[x-3][y-1] == "g"){
                         console.log("Ha llegado SUBIR X =  " + x);
                         
-                        this.extraLife[i] = new VidaExtra(3,this.numToPos(num), (parseInt(x)-1) + "-" + y, (parseInt(x)-2) + "-" + y);
+                        this.extraLife[i] = new VidaExtra(3,this.numToPos(num), (parseInt(x)-1) + "-" + y, (parseInt(x)-2) + "-" + y, this.size);
                         console.log(this.extraLife[i]);
                         
                         for(ii = 0; ii < this.extraLife[i].getOcupar(); ii++){
@@ -409,7 +474,7 @@ var partida = {
                     if (y+2 < 5 && this.matriz[x-1][y] == "g" && this.matriz[x-1][y+1] == "g"){
                         console.log("Ha llegado DERECHA Y =  " + y);
                         
-                        this.extraLife[i] = new VidaExtra(3,this.numToPos(num), x + "-" + (parseInt(y)+1), x + "-" + (parseInt(y)+2));
+                        this.extraLife[i] = new VidaExtra(3,this.numToPos(num), x + "-" + (parseInt(y)+1), x + "-" + (parseInt(y)+2), this.size);
                         console.log(this.extraLife[i]);
                         
                         for(ii = 0; ii < this.extraLife[i].getOcupar(); ii++){
@@ -433,7 +498,7 @@ var partida = {
                     if (y-2 > 0 && this.matriz[x-1][y-2] == "g" && this.matriz[x-1][y-3] == "g"){
                         console.log("Ha llegado IZQUIERDA Y =  " + y);
                         
-                        this.extraLife[i] = new VidaExtra(3,this.numToPos(num), x + "-" + (parseInt(y)-1), x + "-" + (parseInt(y)-2));
+                        this.extraLife[i] = new VidaExtra(3,this.numToPos(num), x + "-" + (parseInt(y)-1), x + "-" + (parseInt(y)-2), this.size);
                         console.log(this.extraLife[i]);
                         
                         for(ii = 0; ii < this.extraLife[i].getOcupar(); ii++){
@@ -499,9 +564,55 @@ var partida = {
                     var pos = document.getElementById(i + "-" + y);
                     var X = i-1;
                     var Y = y-1;
-                    if(this.matriz[X][Y] === "g" || this.matriz[X][Y] === "v" || this.matriz[X][Y] === "m" || this.matriz[X][Y] === "d" || this.matriz[X][Y] === "e" || this.matriz[X][Y] === "z"){
-                        pos.innerHTML = "<button id='" + i + "-" + y + "'><img src='gfx/unrev.png'></button>"
-                    }
+                    
+                    switch(this.matriz[X][Y]){
+                        case "g":
+                        case "v":
+                        case "m":
+                        case "d":
+                        case "e":
+                        case "z":
+                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/unrev.png'></button>";
+                            break;
+                        case "G":
+                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/empty.png'></button>";
+                            break;
+                        case "V":
+                            for(i = 0; i < this.extraLife.length; i++){
+                                if(this.extraLife[i].getPos() == this.posToNum(x,y)){
+                                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.extraLife[i].getImg();+ "'></button>";
+                                };
+                            };
+                            break;
+                        case "M":
+                            for(i = 0; i < this.halfEnemies.length; i++){
+                                if(this.halfEnemies[i].getPos() == this.posToNum(x,y)){
+                                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.halfEnemies[i].getImg();+ "'></button>";
+                                };
+                            };
+                            break;
+                        case "D":
+                            for(i = 0; i < this.doublePoints.length; i++){
+                                if(this.doublePoints[i].getPos() == this.posToNum(x,y)){
+                                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.doublePoints[i].getImg();+ "'></button>";
+                                };
+                            };
+                            break;
+                        case "E":
+                            for(i = 0; i < this.stars.length; i++){
+                                if(this.stars[i].getPos() == this.posToNum(x,y)){
+                                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.stars[i].getImg();+ "'></button>";
+                                };
+                            };
+                            break;
+                        case "Z":
+                            for(i = 0; i < this.enemies.length; i++){
+                                if(this.enemies[i].getPos() == this.posToNum(x,y)){
+                                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.enemies[i].getImg();+ "'></button>";
+                                };
+                            };
+                            break;
+                    }             
                 }
             }
         }
@@ -543,12 +654,3 @@ var partida = {
 };
 
 console.log(partida.size);
-
-
-
-
-
-
-
-
-
