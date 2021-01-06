@@ -12,16 +12,10 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
     color: black;
 }
-.myTable {
-    background-color:#eee;
-    border-collapse:collapse; }
-.myTable th {
-    background-color:#000;
-    color:white;
-    width:50%; }
-.myTable td, .myTable th {
-    padding:5px;
-    border:1px solid #000; }
+
+.myTable td{
+    text-align: center;
+}
 
 .columnTwo {
     float: left;
@@ -46,7 +40,7 @@ body {
 }
 
 .right {
-    width: 60%;
+    width: 50%;
     padding-left: 10px;
 }
 
