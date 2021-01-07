@@ -21,8 +21,70 @@ var stats = {
         this.actualizarStats();
     },
     
+    getEnemigos: function(){
+      return this.enemigos;  
+    },
+    
+    sumarVida : function(){
+        this.vida++;
+    },
+    
+    quitarVida : function(){
+        this.vida--;
+    },
+    
+    estrellaEncontrada : function(){
+        this.estrellas--;
+    },
+    
+    zombieEncontrada : function(){
+        this.enemigos--;
+    },
+    
+    doublePuntosEncontrada : function(){
+        this.doublePuntos--;
+    },
+    mitadEnemigosEncontrada : function(){
+        this.mitadEnemigos--;
+    },
+    vidaExtraEncontrada : function(){
+        this.vidaExtra--;
+    },
+    
+    perder : function(){
+        if(this.vida == 0){
+            return true;
+        }else return false;
+    },
+    
+    ganar : function(){
+        if (this.estrellas == 0 ){
+            return true;
+        }else return false;
+    },
+    
     sumarPuntos : function(puntos){
-        puntosTotal += puntos;
+        switch(puntos){
+            case "g":
+            case "v":
+            case "m":
+                this.puntosTotal += 50;
+                break;
+            case "d":
+                this.puntosTotal *= 2;
+                break;
+            case "e":
+                this.puntosTotal += 200;
+                break;
+            case "z":
+                this.puntosTotal -= 100;
+                if(this.puntosTotal < 0){
+                    this.puntosTotal = 0;
+                }
+                break;
+        };
+        
+        console.log("Puntuacion Actual: " + this.puntosTotal);
     },
     
     getTotal : function(){

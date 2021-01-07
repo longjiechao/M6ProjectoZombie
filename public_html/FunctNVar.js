@@ -36,7 +36,7 @@ var partida = {
         return this.enemiesMax;
     },
     getStarsMax : function(){
-        return this.halfEnemiesMax;
+        return this.starsMax;
     },
     getDoublePointsMax : function(){
         return this.doublePointsMax;
@@ -97,12 +97,19 @@ var partida = {
         this.extraLife = [];
     },
     
+    letraEnLaPos(x, y){
+        x--;
+        y--;
+        return this.matriz[x][y];
+    },
+    
     buscarElemento : function(x, y){
         x--;
         y--;
         var letra = this.matriz[x][y];
         if (letra == "g"){
             this.matriz[x][y] = "G";
+            return "100"*this.size/100;
         }else{
             switch(letra){
                 case "v":
@@ -123,9 +130,14 @@ var partida = {
                         for (ii = 1; ii <= 2; ii++){
                             console.log(this.halfEnemies[i].getPos(ii) + " TESTO " + this.numToPos(this.posToNum(x,y)));
                             if(this.halfEnemies[i].getPos(ii) == this.numToPos(this.posToNum(x,y))){
+                                console.log("Más tests");
                                 this.halfEnemies[i].descubrir(ii);
                                 this.matriz[x][y] = this.halfEnemies[i].getEstado(ii);
                                 console.log("ESTADO? " + this.halfEnemies[i].getEstado(ii));
+                                this.halfEnemies[i].encontrado();
+                                if (this.halfEnemies[i].activar()){
+                                    this.quitarMitadZombie(stats.getEnemigos());
+                                }
                             }
                         }
                     }
@@ -164,7 +176,7 @@ var partida = {
             }
         }
         console.log(this.matriz);
-        this.mostrarTabla();
+        //this.mostrarTabla();
     },
     
     cambio : function(){
@@ -557,10 +569,9 @@ var partida = {
                     pos.innerHTML = "<img src='gfx/lock.png'>";
                 }
             }
-        }
-        //this.mostrarElementos();     
+        } 
     },
-    
+    //comprueba que en la posicion introducida sea un minusculas (no activada)
     checkMinus : function(x,y){
         console.log("X1; " + x + " Y1: " + y);
         if(this.matriz[i][y] === "g" || this.matriz[i][y] === "v" || this.matriz[i][y] === "m" || this.matriz[i][y] === "d" || this.matriz[i][y] === "e" || this.matriz[i][y] === "z"){
@@ -568,6 +579,31 @@ var partida = {
         }else{
             return false;
         }
+    },
+    
+    //funcion donde quita la mitad de los zombies
+    quitarMitadZombie : function(num){
+        var n = Math.floor(num/2);
+        for(i = 0; i < this.enemies.length; i++){
+            if(this.enemies[i].getEstado() == "z"){
+                if(n > 0){
+                    this.enemies[i].descubrir();
+                    var coord = this.enemies[i].getPos().split('-');
+                    coord[0] -=1;
+                    coord[1] -=1;
+                    console.log(this.enemies[i].getPos());
+                    console.log(coord);
+                    console.log("AA" + coord[0] +":-:"+ coord[1]);
+                    this.matriz[coord[0]][coord[1]] = this.enemies[i].getEstado();
+                    console.log(this.matriz[coord[0]][coord[1]]);
+                    n--;
+                    
+                    
+                }
+                
+            }
+        }
+        console.log(this.enemies);
     },
     
     cambiarSprite : function(){
@@ -641,40 +677,6 @@ var partida = {
                     }             
                 }
             }
-        }
-    },
-    
-    //muestra los variables en la tabla
-    mostrarElementos : function() {
-//        enemies : [],
-//        stars : [],
-//        doublePoints : [],
-//        halfEnemies : [],
-//        extraLife : [],
-        var pos;
-        for (i = 0; i < this.enemies.length; i++){
-            pos  = document.getElementById(this.enemies[i].getPos());
-            pos.innerHTML = this.enemies[i].getEstado();
-        }
-        
-        for (i = 0; i < this.stars.length; i++){
-            pos  = document.getElementById(this.stars[i].getPos());
-            pos.innerHTML = this.stars[i].getEstado();
-        }
-        
-        for (i = 0; i < this.doublePoints.length; i++){
-            pos  = document.getElementById(this.doublePoints[i].getPos());
-            pos.innerHTML = this.doublePoints[i].getEstado();
-        }
-        
-        for (i = 0; i < this.halfEnemies.length; i++){
-            pos  = document.getElementById(this.halfEnemies[i].getPos());
-            pos.innerHTML = this.halfEnemies[i].getEstado();
-        }
-        
-        for (i = 0; i < this.extraLife.length; i++){
-            pos  = document.getElementById(this.extraLife[i].getPos());
-            pos.innerHTML = this.extraLife[i].getEstado();
         }
     }
 };

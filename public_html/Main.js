@@ -13,9 +13,29 @@ function play(){
     var x = document.getElementById("X").value;
     var y = document.getElementById("Y").value;
     console.log(x + "-" + y);
-    partida.buscarElemento(x, y);
-    partida.rellenarTabla();
+    stats.sumarPuntos(partida.letraEnLaPos(x, y));
+    
+    if (partida.letraEnLaPos(x, y) == "z"){
+        stats.zombieEncontrada();
+        stats.quitarVida();
+    }else if (partida.letraEnLaPos(x, y) == "e"){
+        stats.estrellaEncontrada();
+    }else if(partida.letraEnLaPos(x, y) == "d"){
+        stats.doublePuntosEncontrada();
+    }else if (partida.letraEnLaPos(x, y) == "d"){
+        stats.mitadEnemigosEncontrada();
+    }else if(partida.letraEnLaPos(x, y) == "v"){
+        stats.vidaExtraEncontrada();
+    }
     //partida.mostrarTabla()
+    partida.buscarElemento(x,y);
+    partida.rellenarTabla();
+    stats.actualizarStats();
+    if(stats.ganar()){
+        alert("Has ganado");
+    }else if(stats.perder()){
+        alert("Has perdido");
+    }
 }
 
 function botonSelect(){
@@ -24,10 +44,6 @@ function botonSelect(){
         size = prompt("Por favor, escoja del 5 a 20");
     }
     partida.start(size);
-    
-    console.log("TESTO");
-    //console.log(partida);
-    //partida.test();
     stats.statInicial(partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
 }
 
