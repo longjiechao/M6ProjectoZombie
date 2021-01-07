@@ -43,8 +43,12 @@ function botonSelect(){
     while((size > 20 || size < 5) || size == null || isNaN(size)){
         size = prompt("Por favor, escoja del 5 a 20");
     }
+    var botonX = document.getElementById("X");
+    var botonY = document.getElementById("Y");
+    botonX.setAttribute("max", size);
+    botonY.setAttribute("max", size);
     partida.start(size);
-    stats.statInicial(partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
+    stats.statInicial(3, partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
 }
 
 

@@ -12,7 +12,8 @@ var stats = {
     mitadEnemigos : 0,
     vidaExtra : 0,
     
-    statInicial : function(enemigos, estrellas, doublePuntos, mitadEnemigos, vidaExtra){
+    statInicial : function(vida ,enemigos, estrellas, doublePuntos, mitadEnemigos, vidaExtra){
+        this.vida = vida;
         this.enemigos = enemigos;
         this.estrellas = estrellas;
         this.doublePuntos = doublePuntos;
@@ -83,7 +84,8 @@ var stats = {
                 }
                 break;
         };
-        
+        var statsPoints = document.getElementById("statsPoints");
+        statsPoints.innerHTML = this.puntosTotal;
         console.log("Puntuacion Actual: " + this.puntosTotal);
     },
     
