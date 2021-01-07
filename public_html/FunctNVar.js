@@ -595,58 +595,6 @@ var partida = {
         return cantidad;
     },
     
-    cambiarSprite : function(){
-        
-//        case "G":
-//            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/empty.png'></button>";
-//            break;
-//        case "V":
-//            for(i = 0; i < this.extraLife.length; i++){
-//                if(this.extraLife[i].getPos() == posID){
-//                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.extraLife[i].getImg();+ "'></button>";
-//                    console.log("Dibujar");
-//                    break;
-//                };
-//            };
-//            break;
-//        case "M":
-//            for(i = 0; i < this.halfEnemies.length; i++){
-//                if(this.halfEnemies[i].getPos() == posID){
-//                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.halfEnemies[i].getImg();+ "'></button>";
-//                    console.log("Dibujar");
-//                    break;
-//                };
-//            };
-//            break;
-//        case "D":
-//            for(i = 0; i < this.doublePoints.length; i++){
-//                if(this.doublePoints[i].getPos() == posID){
-//                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.doublePoints[i].getImg();+ "'></button>";
-//                    console.log("Dibujar");
-//                    break;
-//                };
-//            };
-//            break;
-//        case "E":
-//            for(i = 0; i < this.stars.length; i++){
-//                if(this.stars[i].getPos() == posID){
-//                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.stars[i].getImg();+ "'></button>";
-//                    console.log("Dibujar");
-//                    break;
-//                };
-//            };
-//            break;
-//        case "Z":
-//            for(i = 0; i < this.enemies.length; i++){
-//                if(this.enemies[i].getPos() == posID){
-//                    pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='" + this.enemies[i].getImg();+ "'></button>";
-//                    console.log("Dibujar");
-//                    break;
-//                };
-//            };
-//            break;
-    },
-    
     mostrarTabla : function(){
         for (i=1; i <= 20; i++){
             for (y=1; y <= 20; y++){
@@ -661,22 +609,22 @@ var partida = {
                         case "d":
                         case "e":
                         case "z":
-                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/unrev.png'></button>";
+                            pos.innerHTML = "<button id='" + i + "-" + y + "'><img src='gfx/unrev.png'></button>";
                             break;
                         case "G":
-                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/rev.png'></button>";
+                            pos.innerHTML = "<button id='" + i + "-" + y + "'><img src='gfx/rev.png'></button>";
                             break;
                         case "V":
-                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/1up.png'></button>";
+                            pos.innerHTML = "<button id='" + i + "-" + y + "'><img src='gfx/1up.png'></button>";
                             break;
                         case "M":
-                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/halfEnemy.png'></button>";
+                            pos.innerHTML = "<button id='" + i + "-" + y + "'><img src='gfx/halfEnemy.png'></button>";
                             break;
                         case "D":
-                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/x2.png'></button>";
+                            pos.innerHTML = "<button id='" + i + "-" + y + "'><img src='gfx/x2.png'></button>";
                             break;
                         case "E":
-                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/star.png'></button>";
+                            pos.innerHTML = "<button id='" + i + "-" + y + "'><img src='gfx/star.png'></button>";
                             break;
                         case "Z":
                             for (i2 = 0; i2 < this.enemies.length; i2++){

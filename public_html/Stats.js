@@ -12,7 +12,11 @@ var stats = {
     mitadEnemigos : 0,
     vidaExtra : 0,
     
+    primerMovimiento : 1,
+    
     puntosRush : 0,
+    
+    
     
     statInicial : function(vida ,enemigos, estrellas, doublePuntos, mitadEnemigos, vidaExtra){
         this.vida = vida;
@@ -21,6 +25,7 @@ var stats = {
         this.doublePuntos = doublePuntos;
         this.mitadEnemigos = mitadEnemigos;
         this.vidaExtra = vidaExtra;
+        this.primerMovimiento = 1,
         this.actualizarStats();
     },
     
@@ -100,6 +105,11 @@ var stats = {
         return this.puntosTotal;
     },
     
+    statModo : function(size){
+        var statMode = document.getElementById("modes");
+        statMode.innerHTML = size;
+    },
+    
     actualizarStats : function(){
         var statHP = document.getElementById("statsHP");
         var statEnemigo = document.getElementById("statsEnemies");
@@ -114,7 +124,6 @@ var stats = {
         statDoubleP.innerHTML = this.doublePuntos;
         statMitadE.innerHTML = this.mitadEnemigos;
         statExtraLife.innerHTML = this.vidaExtra;
-        
     },
     masVida : function(){
         this.vida++;
@@ -132,11 +141,10 @@ var stats = {
         ganadas = localStorage.getItem("winStats");
         ganadas++;
         localStorage.setItem("winStats",ganadas);
-        
         if(this.puntosTotal > localStorage.getItem(size)){
             localStorage.setItem(size,this.puntosTotal);
         }
-        console.log(ganadas);
+        ganada.innerHTML = ganadas;
     },
     
     sumarPerdida : function(size){
@@ -147,40 +155,43 @@ var stats = {
         if(this.puntosTotal > localStorage.getItem(size)){
             localStorage.setItem(size,this.puntosTotal);
         }
+        perdida.innerHTML = perdidas;
     },
     
     sumarAbandonada : function(size){
         var abandonada = document.getElementById("abandonedStats");
         abandon = localStorage.getItem("abandonedStats");
+        console.log(abandon);
         abandon++;
         localStorage.setItem("abandonedStats",abandon);
         if(this.puntosTotal > localStorage.getItem(size)){
             localStorage.setItem(size,this.puntosTotal);
         }
+        abandonada.innerHTML = abandon;
     },
     //--------------------------------------------
     
     //Pone las estadisticas locales
     setLocalStorage : function(){
         
-        if (localStorage.getItem("guanyades") != null) {
-            ganadas = localStorage.getItem("winStats");
+        if (localStorage.getItem("winStats") != null) {
+            var ganadas = localStorage.getItem("winStats");
             var statGanada = document.getElementById("winStats");
             statGanada.innerHTML = ganadas;
         }else{
             localStorage.setItem("winStats",0);
         }
-        if (localStorage.getItem("perdudes") != null) {
-            perdidas = localStorage.getItem("loseStats");
+        if (localStorage.getItem("loseStats") != null) {
+            var perdidas = localStorage.getItem("loseStats");
             var statPerdidas = document.getElementById("loseStats");
-            statPErdidas.innerHTML = perdidas;
+            statPerdidas.innerHTML = perdidas;
         }else{
             localStorage.setItem("loseStats",0);
         }
-        if (localStorage.getItem("abandonades") != null) {
-            abandon = localStorage.getItem("abandonedStats");
+        if (localStorage.getItem("abandonedStats") != null) {
+            var abandonada = localStorage.getItem("abandonedStats");
             var statAbandon = document.getElementById("abandonedStats");
-            statAbandon.innerHTML = abandon;
+            statAbandon.innerHTML = abandonada;
         }else{
             localStorage.setItem("abandonedStats",0);
         }
@@ -201,6 +212,16 @@ var stats = {
         }else{
             localStorage.setItem("rushStats",0);
         }
+    },
+    
+    primerMov : function(){
+        this.primerMovimiento = 0; 
+    },
+    
+    movPrimer : function(){
+        if(this.primerMovimiento == 1){
+            return true;
+        }else return false;
     }
     
 }
