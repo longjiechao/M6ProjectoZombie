@@ -566,7 +566,7 @@ var partida = {
                     //pos.innerHTML = "<button id='" + files + "-" + columnes + "' class='btcaselles'><img src='" + imatge + "></button>";
                     pos.innerHTML = this.matriz[i-1][y-1];
                 }else{
-                    pos.innerHTML = "<img src='gfx/lock.png'>";
+                    pos.innerHTML = "";
                 }
             }
         } 
