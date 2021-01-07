@@ -92,12 +92,23 @@ and open the template in the editor.
             </div>
             
             <div id="gameplay" class="column middle">
-                <span class="bTitle">Current Mode: </span><span id="modes">0</span>
+                
+                <table id="tableScores">
+                    <tr>
+                        <th>Scores</th>
+                    </tr>
+                    <tr>
+                        <td>Ganadas: <span id="winStats">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Perdidas: <span id="loseStats">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Abandonadas: <span id="abandonedStats">0</span></td>
+                    </tr>
+                </table>
+                
                 <br>
-                <input class="pos" id="X" type="number" min="1" max="20" placeholder="X">
-                <input class="pos" id="Y" type="number" min="1" max="20" placeholder="Y">
-                <button class="btn" value="submit" id="submit"><i class="fa fa-check"></i></button>
-                <br><br>
                 <table id="tableGameStats">
                     <tr>
                         <th>Stats</th>
@@ -126,23 +137,14 @@ and open the template in the editor.
                 </table>
                 
                 <br>
-                
-                <table id="tableScores">
-                    <tr>
-                        <th>Scores</th>
-                    </tr>
-                    <tr>
-                        <td>Ganadas: <span id="winStats">0</span></td>
-                    </tr>
-                    <tr>
-                        <td>Perdidas: <span id="loseStats">0</span></td>
-                    </tr>
-                    <tr>
-                        <td>Abandonadas: <span id="abandonedStats">0</span></td>
-                    </tr>
-                </table>
+                <span class="bTitle">Current Mode: </span><span id="modes">0</span>
+                <br>
+                <input class="pos" id="X" type="number" min="1" max="20" placeholder="X">
+                <input class="pos" id="Y" type="number" min="1" max="20" placeholder="Y">
+                <button class="btn" value="submit" id="submit"><i class="fa fa-check"></i></button>
                 
                 <button class="button3" id="giveup">Abandonar</button>
+
             </div>
             
             

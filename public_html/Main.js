@@ -40,7 +40,7 @@ function playButton(x, y){
     if(stats.ganar()){
         console.log(rush);
         if(stats.getRush()){
-            if (size = 20){
+            if (size == 20){
                 alert("¡¡¡Felicidades por pasarte el modo Rush!!!");
                 stats.sumarGanada(stats.getSize());
                 stats.setLocalStorage();
@@ -103,7 +103,7 @@ function play(){
     stats.primerMov();
     if(stats.ganar()){
         if(stats.getRush()){
-            if (size = 20){
+            if (size == 20){
                 alert("¡¡¡Felicidades por pasarte el modo Rush!!!");
                 stats.sumarGanada(stats.getSize());
                 stats.setLocalStorage();
@@ -152,7 +152,7 @@ function botonSelect(){
 
 function botonRush(){
     stats.setRush(true);
-    size = 20;
+    size = 5;
     
     stats.jugando();
     stats.statModo(size);
