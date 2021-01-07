@@ -37,6 +37,6 @@ var  Element = function(ocupar, pos, diff){
     
     this.getImg = function(){
         return this.img;
-    }
+    };
 };
 

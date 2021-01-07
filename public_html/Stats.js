@@ -43,7 +43,10 @@ var stats = {
         this.doublePuntos = doublePuntos;
         this.mitadEnemigos = mitadEnemigos;
         this.vidaExtra = vidaExtra;
-        this.primerMovimiento = 1,
+        this.primerMovimiento = 1;
+        if (this.rush == false || this.getSize() == 5){
+            this.puntosTotal = 0;
+        };
         this.actualizarStats();
     },
     
