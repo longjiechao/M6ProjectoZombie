@@ -123,6 +123,7 @@ tr{
   transition-duration: 0.4s;
   cursor: pointer;
   margin-top:12px;
+  border-radius: 12px;
 }
 
 .button3:hover {
