@@ -116,10 +116,12 @@ var stats = {
         statExtraLife.innerHTML = this.vidaExtra;
         
     },
+    masVida : function(){
+        this.vida++;
+    },
     
-    quitarMitadEnemigos : function(cantidad){
-        this.enemigos = cantidad;
-        console.log("oh wow cantidad " + cantidad);
+    enemigoActualMitad : function(n){
+        this.enemigos = this.enemigos - n;
     },
     
     //--------------------------------------------

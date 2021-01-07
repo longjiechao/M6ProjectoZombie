@@ -120,6 +120,11 @@ var partida = {
                                 this.extraLife[i].descubrir(ii);
                                 this.matriz[x][y] = this.extraLife[i].getEstado(ii);
                                 console.log(this.extraLife[i].getEstado(ii));
+                                this.extraLife[i].encontrado();
+                                if (this.extraLife[i].activar()){
+                                    stats.masVida();
+                                    console.log("Ha estado aqui");
+                                }
                             }
                         }
                     }
@@ -314,19 +319,13 @@ var partida = {
                         
                         this.halfEnemies[i] = new QuitarMitadZombie(2,this.numToPos(num), parseInt(x)+1 + "-" + y, this.size);
                         console.log(this.halfEnemies[i]);
-                        
                         for(ii = 0; ii < this.halfEnemies[i].getOcupar(); ii++){
                             var pos  = document.getElementById(this.halfEnemies[i].getPos(ii));
                             pos.innerHTML = this.halfEnemies[i].getEstado(ii);
                             this.matriz[this.numToPosX(num)+ii][this.numToPosY(num)] = this.halfEnemies[i].getEstado();
-                            console.log("--TEST PLACING--");
-                            console.log("Posición: " + this.halfEnemies[i].getPos(ii+1));
-                            console.log("X " + this.numToPosX(num)+ii);
-                            console.log("Y " + this.numToPosY(num));
                             
                             this.casillasPos.splice(this.casillasPos.indexOf(this.posToNum(x+ii-1,y-1)), 1);
                         }
-                        console.log("--TEST PLACING--");
                         
                         loopCheck = false;
                     }
@@ -576,6 +575,7 @@ var partida = {
                     coord[1] -=1;
                     this.matriz[coord[0]][coord[1]] = this.enemies[i].getEstado();
                     n--;
+                    stats.enemigoActualMitad(n);
                 }
             }
         }
@@ -584,13 +584,14 @@ var partida = {
     
     cantidadEnemigoActual : function(){
         var cantidad = 0;
-        console.log(this.enemies);
         for(i = 0; i < this.enemies.length; i++){
             console.log(this.enemies[i].getEstado());
             if (this.enemies[i].getEstado() == "z"){
                 cantidad++;
             }
         }
+        console.log("AAAAAAA");
+        console.log(this.enemies);
         return cantidad;
     },
     
@@ -663,22 +664,29 @@ var partida = {
                             pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/unrev.png'></button>";
                             break;
                         case "G":
-                            pos.innerHTML = "a lo mejor funciona";
+                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/rev.png'></button>";
                             break;
                         case "V":
-                            pos.innerHTML = "a lo mejor funciona";
+                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/1up.png'></button>";
                             break;
                         case "M":
-                            pos.innerHTML = "a lo mejor funciona";
+                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/halfEnemy.png'></button>";
                             break;
                         case "D":
-                            pos.innerHTML = "a lo mejor funciona";
+                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/x2.png'></button>";
                             break;
                         case "E":
-                            pos.innerHTML = "a lo mejor funciona";
+                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/star.png'></button>";
                             break;
                         case "Z":
-                            pos.innerHTML = "a lo mejor funciona";
+                            for (i2 = 0; i2 < this.enemies.length; i2++){
+                                console.log(this.enemies[i2].getPos() + " HOLAAA " + i+"-"+y);
+                                if (this.enemies[i2].getPos() == i+"-"+y){
+                                var sprite = this.enemies[i2].getImg();
+                                console.log("holi "+this.enemies[i2].getImg());
+                                };
+                            }
+                            pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='"+ sprite +".png'></button>";
                             break;
                         
                     }             

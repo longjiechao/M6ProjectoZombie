@@ -10,7 +10,9 @@ document.getElementById("giveup").addEventListener("click", play);
 document.getElementById("rush").addEventListener("click", botonRush);
 document.getElementById("points").addEventListener("click", play);
 
-
+for(i = 0; i < 20; i++){
+    
+}
 
 function play(){
     var x = document.getElementById("X").value;
@@ -19,16 +21,13 @@ function play(){
     stats.sumarPuntos(partida.letraEnLaPos(x, y));
     
     if (partida.letraEnLaPos(x, y) == "z"){
-        stats.zombieEncontrada();
         stats.quitarVida();
         
     }else if (partida.letraEnLaPos(x, y) == "e"){
         stats.estrellaEncontrada();
         
-    }else if(partida.letraEnLaPos(x, y) == "m"){
-            
+    }else if(partida.letraEnLaPos(x, y) == "m"){ 
         stats.mitadEnemigosEncontrada();
-        stats.quitarMitadEnemigos(partida.cantidadEnemigoActual());
         
     }else if (partida.letraEnLaPos(x, y) == "d"){
         stats.doublePuntosEncontrada();
