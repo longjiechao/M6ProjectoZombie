@@ -93,6 +93,8 @@ and open the template in the editor.
             </div>
             
             <div class="column middle">
+                <span class="bTitle">Current Mode: </span><span id="modes">0</span>
+                <br>
                 <input class="pos" id="X" type="number" min="1" max="20" placeholder="X">
                 <input class="pos" id="Y" type="number" min="1" max="20" placeholder="Y">
                 <button class="btn" value="submit" id="submit"><i class="fa fa-check"></i></button>
@@ -124,7 +126,7 @@ and open the template in the editor.
                     </tr>
                 </table>
                 
-                <br><br>
+                <br>
                 
                 <table>
                     <tr>
@@ -141,6 +143,7 @@ and open the template in the editor.
                     </tr>
                 </table>
                 
+                <button class="button3" id="giveup">Abandonar</button>
             </div>
             
             
@@ -587,7 +590,6 @@ and open the template in the editor.
                         <td id="20-20">20.20</td>
                     </tr>
                 </table>
-                <button id="giveup">Abandonar</button>
             </div>
             
         </div>
