@@ -86,7 +86,12 @@ var stats = {
         };
         var statsPoints = document.getElementById("statsPoints");
         statsPoints.innerHTML = this.puntosTotal;
-        console.log("Puntuacion Actual: " + this.puntosTotal);
+    },
+    
+    setTotal : function(id){
+        var statFinal = document.getElementById(id);
+        localStorage.setItem(id, this.puntosTotal);
+        statFinal.innerHTML = this.puntosTotal;
     },
     
     getTotal : function(){
@@ -108,6 +113,41 @@ var stats = {
         statMitadE.innerHTML = this.mitadEnemigos;
         statExtraLife.innerHTML = this.vidaExtra;
         
+    },
+    
+    sumarGanada : function(){
+        var ganada = document.getElementById("winStats");
+    },
+    
+    sumarPerdida : function(){
+        var perdida = document.getElementById("loseStats");
+    },
+    
+    sumarAbandonada : function(){
+        var abandonada = document.getElementById("abandonedStats");
+    },
+    
+    //
+    setLocalStorage : function(){
+        
+        if (localStorage.getItem("guanyades") != null) {
+            guanyades = localStorage.getItem("guanyades");
+        }
+        if (localStorage.getItem("perdudes") != null) {
+            perdudes = localStorage.getItem("perdudes");
+        }
+        if (localStorage.getItem("abandonades") != null) {
+            abandonades = localStorage.getItem("abandonades");
+        }
+        for (i = 5; i <= 20; i++){
+            if (localStorage.getItem(i) != null) {
+                abandonades = localStorage.getItem(i);
+            }
+        }
+        if (localStorage.getItem("rush") != null) {
+            rush = localStorage.getItem("rush");
+        }
     }
+    
 }
 

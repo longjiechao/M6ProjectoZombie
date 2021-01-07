@@ -6,6 +6,9 @@
 
 document.getElementById("level").addEventListener("click", botonSelect);
 document.getElementById("submit").addEventListener("click", play);
+document.getElementById("giveup").addEventListener("click", play);
+document.getElementById("rush").addEventListener("click", botonRush);
+document.getElementById("points").addEventListener("click", play);
 
 
 
@@ -33,6 +36,7 @@ function play(){
     stats.actualizarStats();
     if(stats.ganar()){
         alert("Has ganado");
+        stats.setTotal(size);
     }else if(stats.perder()){
         alert("Has perdido");
     }
@@ -53,7 +57,8 @@ function botonSelect(){
 
 
 function botonRush(){
-    size = 5;
+    var size = 5;
+   
 }
 
 
