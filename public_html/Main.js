@@ -8,7 +8,6 @@ stats.noJugando();
 
 function playButton(x, y){
     stats.sumarPuntos(partida.letraEnLaPos(x, y));
-    console.log();
     if (partida.letraEnLaPos(x, y) == "z"){
         stats.zombieEncontrada();
         stats.quitarVida();
@@ -39,13 +38,29 @@ function playButton(x, y){
     partida.mostrarTabla()
     stats.primerMov();
     if(stats.ganar()){
-        alert("Has ganado");
-        stats.sumarGanada(size);
-        stats.setLocalStorage();
-        stats.mostrarStats();
+        console.log(rush);
+        if(stats.getRush()){
+            if (size = 20){
+                alert("¡¡¡Felicidades por pasarte el modo Rush!!!");
+                stats.sumarGanada(stats.getSize());
+                stats.setLocalStorage();
+                stats.mostrarStats();
+            }else{
+                alert("Has ganado, pasas a la siguiente ronda");
+                rushNext(stats.getSize());
+                stats.jugando();
+            }
+        }else{
+            alert("Has ganado");
+            stats.sumarGanada(stats.getSize());
+            console.log(stats.getSize());
+            stats.setLocalStorage();
+            stats.mostrarStats();
+        }
+        
     }else if(stats.perder()){
         alert("Has perdido");
-        stats.sumarPerdida(size);
+        stats.sumarPerdida(stats.getSize());
         stats.setLocalStorage();
         stats.mostrarStats();
     }
@@ -87,13 +102,27 @@ function play(){
     partida.mostrarTabla()
     stats.primerMov();
     if(stats.ganar()){
-        alert("Has ganado");
-        stats.sumarGanada(size);
-        stats.setLocalStorage();
-        stats.mostrarStats();
+        if(stats.getRush()){
+            if (size = 20){
+                alert("¡¡¡Felicidades por pasarte el modo Rush!!!");
+                stats.sumarGanada(stats.getSize());
+                stats.setLocalStorage();
+                stats.mostrarStats();
+            }else{
+                alert("Has ganado, pasas a la siguiente ronda");
+                rushNext(stats.getSize());
+                stats.jugando();
+            }
+        }else{
+            alert("Has ganado");
+            stats.sumarGanada(stats.getSize());
+            stats.setLocalStorage();
+            stats.mostrarStats();
+        }
+        
     }else if(stats.perder()){
         alert("Has perdido");
-        stats.sumarPerdida(size);
+        stats.sumarPerdida(stats.getSize());
         stats.setLocalStorage();
         stats.mostrarStats();
     }
@@ -101,11 +130,14 @@ function play(){
 }
 
 function botonSelect(){
+    stats.setRush(false);
+    stats.getRush();
     stats.jugando();
     size = prompt("Escoja el tamaño la tabla: 5<->20 ");
     while((size > 20 || size < 5) || size == null || isNaN(size)){
         size = prompt("Por favor, escoja del 5 a 20");
     }
+    ;
     stats.statModo(size);
     stats.setLocalStorage();
     var botonX = document.getElementById("X");
@@ -114,17 +146,45 @@ function botonSelect(){
     botonY.setAttribute("max", size);
     partida.start(size);
     stats.statInicial(3, partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
+    stats.setSize(size)
 }
 
 
 function botonRush(){
-    var size = 5;
-   
+    stats.setRush(true);
+    size = 20;
+    
+    stats.jugando();
+    stats.statModo(size);
+    stats.setLocalStorage();
+    var botonX = document.getElementById("X");
+    var botonY = document.getElementById("Y");
+    botonX.setAttribute("max", size);
+    botonY.setAttribute("max", size);
+    partida.start(size);
+    stats.statInicial(3, partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
+    console.log(partida.printTablaTest());
+    stats.setSize(size)
+}
+
+function rushNext(newSize){
+    newSize++;
+    stats.jugando();
+    stats.statModo(newSize);
+    stats.setLocalStorage();
+    var botonX = document.getElementById("X");
+    var botonY = document.getElementById("Y");
+    botonX.setAttribute("max", newSize);
+    botonY.setAttribute("max", newSize);
+    partida.start(newSize);
+    stats.statInicial(3, partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
+    console.log(partida.printTablaTest());
+    stats.setSize(newSize)
 }
 
 function rendir(){
     stats.setLocalStorage();
-    stats.sumarAbandonada(size);
+    stats.sumarAbandonada(stats.getSize());
     stats.noJugando();
     
 }

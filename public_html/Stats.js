@@ -16,7 +16,25 @@ var stats = {
     
     puntosRush : 0,
     
+    size : 0,
     
+    rush : false,
+    
+    getRush : function(){
+        return this.rush;
+    },
+    
+    setRush : function(rush){
+        this.rush = rush;
+    },
+    
+    getSize : function(){
+        return this.size;
+    },
+    
+    setSize : function(size){
+        this.size = size;
+    },
     
     statInicial : function(vida ,enemigos, estrellas, doublePuntos, mitadEnemigos, vidaExtra){
         this.vida = vida;
@@ -131,9 +149,16 @@ var stats = {
         ganadas = localStorage.getItem("winStats");
         ganadas++;
         localStorage.setItem("winStats",ganadas);
-        if(this.puntosTotal > localStorage.getItem(size)){
-            localStorage.setItem(size,this.puntosTotal);
+        if(this.getRush){
+            if(this.puntosTotal > localStorage.getItem("rushStats")){
+                localStorage.setItem("rushStats",this.puntosTotal);
+            }
+        }else{
+            if(this.puntosTotal > localStorage.getItem(size)){
+                localStorage.setItem(size,this.puntosTotal);
+            }
         }
+        
         ganada.innerHTML = ganadas;
     },
     
@@ -142,8 +167,14 @@ var stats = {
         perdidas = localStorage.getItem("loseStats");
         perdidas++;
         localStorage.setItem("loseStats",perdidas);
-        if(this.puntosTotal > localStorage.getItem(size)){
-            localStorage.setItem(size,this.puntosTotal);
+        if(this.getRush){
+            if(this.puntosTotal > localStorage.getItem("rushStats")){
+                localStorage.setItem("rushStats",this.puntosTotal);
+            }
+        }else{
+            if(this.puntosTotal > localStorage.getItem(size)){
+                localStorage.setItem(size,this.puntosTotal);
+            }
         }
         perdida.innerHTML = perdidas;
     },
@@ -154,8 +185,14 @@ var stats = {
         console.log(abandon);
         abandon++;
         localStorage.setItem("abandonedStats",abandon);
-        if(this.puntosTotal > localStorage.getItem(size)){
-            localStorage.setItem(size,this.puntosTotal);
+        if(this.getRush){
+            if(this.puntosTotal > localStorage.getItem("rushStats")){
+                localStorage.setItem("rushStats",this.puntosTotal);
+            }
+        }else{
+            if(this.puntosTotal > localStorage.getItem(size)){
+                localStorage.setItem(size,this.puntosTotal);
+            }
         }
         abandonada.innerHTML = abandon;
     },

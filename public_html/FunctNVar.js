@@ -48,6 +48,9 @@ var partida = {
         return this.extraLifeMax;
     },
     
+    printTablaTest : function(){
+        return this.matriz;
+    },
     
     test : function(){
         console.log("--Test Variables--");
