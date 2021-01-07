@@ -76,7 +76,7 @@ var partida = {
         this.calculoCantidadLoot();
         this.setLoot();
         this.rellenarTabla();
-        //this.mostrarTabla();
+        this.mostrarTabla();
     },
     
     restart : function(){
@@ -128,8 +128,8 @@ var partida = {
                     console.log("m");
                     for(i = 0; i < this.halfEnemies.length; i++){
                         for (ii = 1; ii <= 2; ii++){
-                            console.log(this.halfEnemies[i].getPos(ii) + " TESTO " + this.numToPos(this.posToNum(x,y)));
-                            if(this.halfEnemies[i].getPos(ii) == this.numToPos(this.posToNum(x,y))){
+                            //console.log(this.halfEnemies[i].getPos(ii) + " TESTO " + this.numToPos(this.posToNum(x,y)));
+                            if(this.halfEnemies[i].getPos(ii) === this.numToPos(this.posToNum(x,y))){
                                 console.log("Más tests");
                                 this.halfEnemies[i].descubrir(ii);
                                 this.matriz[x][y] = this.halfEnemies[i].getEstado(ii);
@@ -149,7 +149,6 @@ var partida = {
                         if(this.doublePoints[i].getPos() == this.numToPos(this.posToNum(x,y))){
                             this.doublePoints[i].descubrir();
                             this.matriz[x][y] = this.doublePoints[i].getEstado();
-                            console.log(this.doublePoints[i].getEstado());
                         };
                     };
                     break;
@@ -159,7 +158,6 @@ var partida = {
                         if(this.stars[i].getPos() == this.numToPos(this.posToNum(x,y))){
                             this.stars[i].descubrir();
                             this.matriz[x][y] = this.stars[i].getEstado();
-                            console.log(this.stars[i].getEstado());
                         };
                     };
                     break;
@@ -169,7 +167,6 @@ var partida = {
                         if(this.enemies[i].getPos() == this.numToPos(this.posToNum(x,y))){
                             this.enemies[i].descubrir();
                             this.matriz[x][y] = this.enemies[i].getEstado();
-                            console.log(this.enemies[i].getEstado());
                         };
                     };
                     break;
@@ -188,13 +185,11 @@ var partida = {
         for(i = 0; i < this.casillas; i++){
             this.casillasPos[i] = i+1;
         }
-        console.log(this.casillasPos.length + " nums:  " + this.casillasPos);
         this.setExtraLife();
         this.setHalfEnemies();
         this.setDoublePoints();
         this.setStars();
         this.setEnemies();
-        console.log(this.casillasPos.length + " nums:  " + this.casillasPos);
 
     },
     
@@ -251,9 +246,6 @@ var partida = {
                 this.casillasPos.splice(rand, 1);
             }
             
-            console.log("rand: "  + num);
-            console.log(this.casillasPos.length + " ENEMYnums:  " + this.casillasPos);
-            
             this.enemies[i] = new Enemy(1,this.numToPos(num),this.size);
             
             var pos  = document.getElementById(this.enemies[i].getPos());
@@ -272,9 +264,6 @@ var partida = {
             if (rand > -1) {
                 this.casillasPos.splice(rand, 1);
             }
-            
-            console.log("rand: "  + num);
-            console.log(this.casillasPos.length + " STARSnums:  " + this.casillasPos);
             
             this.stars[i] = new Estrella(1,this.numToPos(num), this.size);
             
@@ -295,9 +284,6 @@ var partida = {
                 this.casillasPos.splice(rand, 1);
             }
             
-            console.log("rand: "  + num);
-            console.log(this.casillasPos.length + " DOUBLEPenums:  " + this.casillasPos);
-            
             this.doublePoints[i] = new MultiPoints(1,this.numToPos(num), this.size);
             
             var pos  = document.getElementById(this.doublePoints[i].getPos());
@@ -314,9 +300,6 @@ var partida = {
             while(loopCheck){
                 var rand = Math.floor(Math.random() * (this.casillasPos.length-1));
                 var num = this.casillasPos[rand];
-
-                console.log("rand: "  + num);
-                console.log(this.casillasPos.length + " HALFENEMIESnums:  " + this.casillasPos);
                 
                 var dir = Math.floor(Math.random() * 4);
                 var x = this.numToPosX(num);
@@ -573,7 +556,6 @@ var partida = {
     },
     //comprueba que en la posicion introducida sea un minusculas (no activada)
     checkMinus : function(x,y){
-        console.log("X1; " + x + " Y1: " + y);
         if(this.matriz[i][y] === "g" || this.matriz[i][y] === "v" || this.matriz[i][y] === "m" || this.matriz[i][y] === "d" || this.matriz[i][y] === "e" || this.matriz[i][y] === "z"){
             return true;
         }else{
@@ -588,22 +570,28 @@ var partida = {
             if(this.enemies[i].getEstado() == "z"){
                 if(n > 0){
                     this.enemies[i].descubrir();
+                    console.log(this.enemies[i].getEstado() + "no funciona yay");
                     var coord = this.enemies[i].getPos().split('-');
                     coord[0] -=1;
                     coord[1] -=1;
-                    console.log(this.enemies[i].getPos());
-                    console.log(coord);
-                    console.log("AA" + coord[0] +":-:"+ coord[1]);
                     this.matriz[coord[0]][coord[1]] = this.enemies[i].getEstado();
-                    console.log(this.matriz[coord[0]][coord[1]]);
                     n--;
-                    
-                    
                 }
-                
             }
         }
         console.log(this.enemies);
+    },
+    
+    cantidadEnemigoActual : function(){
+        var cantidad = 0;
+        console.log(this.enemies);
+        for(i = 0; i < this.enemies.length; i++){
+            console.log(this.enemies[i].getEstado());
+            if (this.enemies[i].getEstado() == "z"){
+                cantidad++;
+            }
+        }
+        return cantidad;
     },
     
     cambiarSprite : function(){
@@ -674,6 +662,25 @@ var partida = {
                         case "z":
                             pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='gfx/unrev.png'></button>";
                             break;
+                        case "G":
+                            pos.innerHTML = "a lo mejor funciona";
+                            break;
+                        case "V":
+                            pos.innerHTML = "a lo mejor funciona";
+                            break;
+                        case "M":
+                            pos.innerHTML = "a lo mejor funciona";
+                            break;
+                        case "D":
+                            pos.innerHTML = "a lo mejor funciona";
+                            break;
+                        case "E":
+                            pos.innerHTML = "a lo mejor funciona";
+                            break;
+                        case "Z":
+                            pos.innerHTML = "a lo mejor funciona";
+                            break;
+                        
                     }             
                 }
             }

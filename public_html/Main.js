@@ -21,22 +21,32 @@ function play(){
     if (partida.letraEnLaPos(x, y) == "z"){
         stats.zombieEncontrada();
         stats.quitarVida();
+        
     }else if (partida.letraEnLaPos(x, y) == "e"){
         stats.estrellaEncontrada();
-    }else if(partida.letraEnLaPos(x, y) == "d"){
-        stats.doublePuntosEncontrada();
-    }else if (partida.letraEnLaPos(x, y) == "d"){
+        
+    }else if(partida.letraEnLaPos(x, y) == "m"){
+            
         stats.mitadEnemigosEncontrada();
+        stats.quitarMitadEnemigos(partida.cantidadEnemigoActual());
+        
+    }else if (partida.letraEnLaPos(x, y) == "d"){
+        stats.doublePuntosEncontrada();
+        
     }else if(partida.letraEnLaPos(x, y) == "v"){
         stats.vidaExtraEncontrada();
+        
     }
-    //partida.mostrarTabla()
+    
     partida.buscarElemento(x,y);
     partida.rellenarTabla();
     stats.actualizarStats();
+    partida.mostrarTabla()
     if(stats.ganar()){
         alert("Has ganado");
-        stats.setTotal(size);
+        stats.sumarGanada(size);
+        stats.setLocalStorage();
+        //stats.setTotal(size);
     }else if(stats.perder()){
         alert("Has perdido");
     }
@@ -47,6 +57,7 @@ function botonSelect(){
     while((size > 20 || size < 5) || size == null || isNaN(size)){
         size = prompt("Por favor, escoja del 5 a 20");
     }
+    stats.setLocalStorage();
     var botonX = document.getElementById("X");
     var botonY = document.getElementById("Y");
     botonX.setAttribute("max", size);

@@ -11,6 +11,12 @@ var Enemy = function(ocupar, pos, diff){
     this.puntos = -50 * (diff/100);
     this.img = "gfx/Enemy" + Math.floor((Math.random() * 4) + 1); + ".png";
     
+    this.cantidad = function(){
+        console.log(this.estado + "no funciona nada");
+      if (this.estado == "z"){
+          return 1;
+      }else return 0;
+    };
 };
 
 Enemy.prototype = Object.create(Element.prototype);

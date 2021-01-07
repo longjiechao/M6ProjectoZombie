@@ -12,6 +12,8 @@ var stats = {
     mitadEnemigos : 0,
     vidaExtra : 0,
     
+    puntosRush : 0,
+    
     statInicial : function(vida ,enemigos, estrellas, doublePuntos, mitadEnemigos, vidaExtra){
         this.vida = vida;
         this.enemigos = enemigos;
@@ -115,37 +117,87 @@ var stats = {
         
     },
     
-    sumarGanada : function(){
+    quitarMitadEnemigos : function(cantidad){
+        this.enemigos = cantidad;
+        console.log("oh wow cantidad " + cantidad);
+    },
+    
+    //--------------------------------------------
+    //coge lo que hay en el localStorage, lo suma 1 y lo actualza.
+    //Tambien si la puntuación que as conseguido es mayor a la anterior, lo actualiza
+    sumarGanada : function(size){
         var ganada = document.getElementById("winStats");
+        ganadas = localStorage.getItem("winStats");
+        ganadas++;
+        localStorage.setItem("winStats",ganadas);
+        
+        if(this.puntosTotal > localStorage.getItem(size)){
+            localStorage.setItem(size,this.puntosTotal);
+        }
+        console.log(ganadas);
     },
     
-    sumarPerdida : function(){
+    sumarPerdida : function(size){
         var perdida = document.getElementById("loseStats");
+        perdidas = localStorage.getItem("loseStats");
+        perdidas++;
+        localStorage.setItem("loseStats",perdidas);
+        if(this.puntosTotal > localStorage.getItem(size)){
+            localStorage.setItem(size,this.puntosTotal);
+        }
     },
     
-    sumarAbandonada : function(){
+    sumarAbandonada : function(size){
         var abandonada = document.getElementById("abandonedStats");
+        abandon = localStorage.getItem("abandonedStats");
+        abandon++;
+        localStorage.setItem("abandonedStats",abandon);
+        if(this.puntosTotal > localStorage.getItem(size)){
+            localStorage.setItem(size,this.puntosTotal);
+        }
     },
+    //--------------------------------------------
     
-    //
+    //Pone las estadisticas locales
     setLocalStorage : function(){
         
         if (localStorage.getItem("guanyades") != null) {
-            guanyades = localStorage.getItem("guanyades");
+            ganadas = localStorage.getItem("winStats");
+            var statGanada = document.getElementById("winStats");
+            statGanada.innerHTML = ganadas;
+        }else{
+            localStorage.setItem("winStats",0);
         }
         if (localStorage.getItem("perdudes") != null) {
-            perdudes = localStorage.getItem("perdudes");
+            perdidas = localStorage.getItem("loseStats");
+            var statPerdidas = document.getElementById("loseStats");
+            statPErdidas.innerHTML = perdidas;
+        }else{
+            localStorage.setItem("loseStats",0);
         }
         if (localStorage.getItem("abandonades") != null) {
-            abandonades = localStorage.getItem("abandonades");
+            abandon = localStorage.getItem("abandonedStats");
+            var statAbandon = document.getElementById("abandonedStats");
+            statAbandon.innerHTML = abandon;
+        }else{
+            localStorage.setItem("abandonedStats",0);
         }
         for (i = 5; i <= 20; i++){
             if (localStorage.getItem(i) != null) {
-                abandonades = localStorage.getItem(i);
+                nivel = localStorage.getItem(i);
+                var statsNivel = document.getElementById(i);
+                statsNivel.innerHTML = nivel;
+                
+            }else{
+                localStorage.setItem(i,0);
             }
         }
-        if (localStorage.getItem("rush") != null) {
-            rush = localStorage.getItem("rush");
+        if (localStorage.getItem("rushStats") != null) {
+            rush = localStorage.getItem("rushStats");
+            var statRush = document.getElementById("rushStats");
+            statRush.innerHTML = rush;
+        }else{
+            localStorage.setItem("rushStats",0);
         }
     }
     
