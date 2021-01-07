@@ -3,6 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+stats.noJugando();
+
 function playButton(x, y){
     stats.sumarPuntos(partida.letraEnLaPos(x, y));
     console.log();
@@ -38,10 +41,13 @@ function playButton(x, y){
     if(stats.ganar()){
         alert("Has ganado");
         stats.sumarGanada(size);
-        stats.setTotal(size);
+        stats.setLocalStorage();
+        stats.mostrarStats();
     }else if(stats.perder()){
-        stats.sumarPerdida(size);
         alert("Has perdido");
+        stats.sumarPerdida(size);
+        stats.setLocalStorage();
+        stats.mostrarStats();
     }
     stats.setLocalStorage();
 }
@@ -84,13 +90,18 @@ function play(){
         alert("Has ganado");
         stats.sumarGanada(size);
         stats.setLocalStorage();
+        stats.mostrarStats();
     }else if(stats.perder()){
         alert("Has perdido");
+        stats.sumarPerdida(size);
+        stats.setLocalStorage();
+        stats.mostrarStats();
     }
     stats.setLocalStorage();
 }
 
 function botonSelect(){
+    stats.jugando();
     size = prompt("Escoja el tamaño la tabla: 5<->20 ");
     while((size > 20 || size < 5) || size == null || isNaN(size)){
         size = prompt("Por favor, escoja del 5 a 20");
@@ -114,11 +125,13 @@ function botonRush(){
 function rendir(){
     stats.setLocalStorage();
     stats.sumarAbandonada(size);
+    stats.noJugando();
     
 }
 
 function showStatsOnly(){
     stats.setLocalStorage();
+    stats.mostrarStats();
 }
     
 

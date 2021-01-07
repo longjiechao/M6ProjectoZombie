@@ -16,7 +16,7 @@ and open the template in the editor.
         <div id="centered">
             <div class="rowTwo">
                 <div class="columnTwo">
-                    <img id="logo" src="gfx/logo2.png" alt="logo" onclick="botonSelect()">
+                    <img id="logo" src="gfx/logo2.png" alt="logo">
                 </div>
                 <br>
                 <div class="columnTwo">
@@ -92,14 +92,14 @@ and open the template in the editor.
                 </table>
             </div>
             
-            <div class="column middle">
+            <div id="gameplay" class="column middle">
                 <span class="bTitle">Current Mode: </span><span id="modes">0</span>
                 <br>
                 <input class="pos" id="X" type="number" min="1" max="20" placeholder="X">
                 <input class="pos" id="Y" type="number" min="1" max="20" placeholder="Y">
                 <button class="btn" value="submit" id="submit"><i class="fa fa-check"></i></button>
                 <br><br>
-                <table>
+                <table id="tableGameStats">
                     <tr>
                         <th>Stats</th>
                     </tr>
@@ -128,7 +128,7 @@ and open the template in the editor.
                 
                 <br>
                 
-                <table>
+                <table id="tableScores">
                     <tr>
                         <th>Scores</th>
                     </tr>

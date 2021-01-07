@@ -95,16 +95,6 @@ var stats = {
         statsPoints.innerHTML = this.puntosTotal;
     },
     
-    setTotal : function(id){
-        var statFinal = document.getElementById(id);
-        localStorage.setItem(id, this.puntosTotal);
-        statFinal.innerHTML = this.puntosTotal;
-    },
-    
-    getTotal : function(){
-        return this.puntosTotal;
-    },
-    
     statModo : function(size){
         var statMode = document.getElementById("modes");
         statMode.innerHTML = size;
@@ -222,6 +212,45 @@ var stats = {
         if(this.primerMovimiento == 1){
             return true;
         }else return false;
+    },
+
+    //Esconder y mostrar divs
+    
+    mostrarStats : function(){
+        var centered = document.getElementById("select").style.visibility = "visible";
+        var stats = document.getElementById("stats").style.visibility = "visible";
+        var game = document.getElementById("game").style.visibility = "hidden";
+        var gameplay = document.getElementById("gameplay").style.visibility = "hidden";
+        
+        var botonX = document.getElementById("X").style.visibility = "hidden";
+        var botonY = document.getElementById("Y").style.visibility = "hidden";
+        var tableGameStats = document.getElementById("tableGameStats").style.visibility = "hidden";
+        var tableScores = document.getElementById("tableScores").style.visibility = "visible";
+        
+    },
+    
+    jugando : function(){
+        var centered = document.getElementById("select").style.visibility = "hidden";
+        var stats = document.getElementById("stats").style.visibility = "visible";
+        var game = document.getElementById("game").style.visibility = "visible";
+        var gameplay = document.getElementById("gameplay").style.visibility = "visible";
+        
+        var botonX = document.getElementById("X").style.visibility = "visible";
+        var botonY = document.getElementById("Y").style.visibility = "visible";
+        var tableGameStats = document.getElementById("tableGameStats").style.visibility = "visible";
+        var tableScores = document.getElementById("tableScores").style.visibility = "visible";
+    },
+    
+    noJugando : function(){
+        var centered = document.getElementById("select").style.visibility = "visible";
+        var stats = document.getElementById("stats").style.visibility = "hidden";
+        var game = document.getElementById("game").style.visibility = "hidden";
+        var gameplay = document.getElementById("gameplay").style.visibility = "hidden";
+        
+        var botonX = document.getElementById("X").style.visibility = "hidden";
+        var botonY = document.getElementById("Y").style.visibility = "hidden";
+        var tableGameStats = document.getElementById("tableGameStats").style.visibility = "hidden";
+        var tableScores = document.getElementById("tableScores").style.visibility = "hidden";
     }
     
 }

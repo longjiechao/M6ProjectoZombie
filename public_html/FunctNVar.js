@@ -642,6 +642,7 @@ var partida = {
             }
         }
     }
+    
 };
 
 console.log(partida.size);
