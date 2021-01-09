@@ -44,7 +44,7 @@ var stats = {
         this.mitadEnemigos = mitadEnemigos;
         this.vidaExtra = vidaExtra;
         this.primerMovimiento = 1;
-        if (this.rush == false || this.getSize() == 5){
+        if (this.rush == false && this.getSize() == 5){
             this.puntosTotal = 0;
         };
         this.actualizarStats();
@@ -128,6 +128,8 @@ var stats = {
         var statDoubleP = document.getElementById("statsDoublePoints");
         var statMitadE = document.getElementById("statsHalfEnemies");
         var statExtraLife = document.getElementById("statsExtraLife");
+        var statsPoints = document.getElementById("statsPoints");
+        
         
         statHP.innerHTML = this.vida;
         statEnemigo.innerHTML = this.enemigos;
@@ -135,6 +137,7 @@ var stats = {
         statDoubleP.innerHTML = this.doublePuntos;
         statMitadE.innerHTML = this.mitadEnemigos;
         statExtraLife.innerHTML = this.vidaExtra;
+        statsPoints.innerHTML = this.puntosTotal;
     },
     masVida : function(){
         this.vida++;
