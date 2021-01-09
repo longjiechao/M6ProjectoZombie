@@ -162,6 +162,7 @@ var stats = {
         }else{
             if(this.puntosTotal > localStorage.getItem(size)){
                 localStorage.setItem(size,this.puntosTotal);
+                console.log("id= " + size + " puntos = " + this.puntosTotal);
             }
         }
         
@@ -180,6 +181,7 @@ var stats = {
         }else{
             if(this.puntosTotal > localStorage.getItem(size)){
                 localStorage.setItem(size,this.puntosTotal);
+                console.log("id= " + size + " puntos = " + this.puntosTotal);
             }
         }
         perdida.innerHTML = perdidas;
@@ -198,6 +200,7 @@ var stats = {
         }else{
             if(this.puntosTotal > localStorage.getItem(size)){
                 localStorage.setItem(size,this.puntosTotal);
+                console.log("id= " + size + " puntos = " + this.puntosTotal);
             }
         }
         abandonada.innerHTML = abandon;

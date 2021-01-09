@@ -631,10 +631,8 @@ var partida = {
                             break;
                         case "Z":
                             for (i2 = 0; i2 < this.enemies.length; i2++){
-                                console.log(this.enemies[i2].getPos() + " HOLAAA " + i+"-"+y);
                                 if (this.enemies[i2].getPos() == i+"-"+y){
                                 var sprite = this.enemies[i2].getImg();
-                                console.log("holi "+this.enemies[i2].getImg());
                                 };
                             }
                             pos.innerHTML = "<button id='" + i + "/" + y + "'><img src='"+ sprite +".png'></button>";
