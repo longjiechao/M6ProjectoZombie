@@ -44,7 +44,9 @@ var stats = {
         this.mitadEnemigos = mitadEnemigos;
         this.vidaExtra = vidaExtra;
         this.primerMovimiento = 1;
-        if (this.rush == false && this.getSize() == 5){
+        if (this.rush == true && this.getSize() == 5){
+            this.puntosTotal = 0;
+        }else if (this.rush == false){
             this.puntosTotal = 0;
         };
         this.actualizarStats();
@@ -155,7 +157,7 @@ var stats = {
         ganadas = localStorage.getItem("winStats");
         ganadas++;
         localStorage.setItem("winStats",ganadas);
-        if(this.getRush){
+        if(this.getRush()){
             if(this.puntosTotal > localStorage.getItem("rushStats")){
                 localStorage.setItem("rushStats",this.puntosTotal);
             }
@@ -174,7 +176,7 @@ var stats = {
         perdidas = localStorage.getItem("loseStats");
         perdidas++;
         localStorage.setItem("loseStats",perdidas);
-        if(this.getRush){
+        if(this.getRush()){
             if(this.puntosTotal > localStorage.getItem("rushStats")){
                 localStorage.setItem("rushStats",this.puntosTotal);
             }
@@ -193,7 +195,7 @@ var stats = {
         console.log(abandon);
         abandon++;
         localStorage.setItem("abandonedStats",abandon);
-        if(this.getRush){
+        if(this.getRush()){
             if(this.puntosTotal > localStorage.getItem("rushStats")){
                 localStorage.setItem("rushStats",this.puntosTotal);
             }
