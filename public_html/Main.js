@@ -145,8 +145,8 @@ function botonSelect(){
     botonX.setAttribute("max", size);
     botonY.setAttribute("max", size);
     partida.start(size);
-    stats.statInicial(3, partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
     stats.setSize(size);
+    stats.statInicial(3, partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
     stats.actualizarStats();
 }
 
@@ -163,9 +163,9 @@ function botonRush(){
     botonX.setAttribute("max", size);
     botonY.setAttribute("max", size);
     partida.start(size);
+    stats.setSize(size);
     stats.statInicial(3, partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
     console.log(partida.printTablaTest());
-    stats.setSize(size);
     stats.actualizarStats();
 }
 
@@ -179,9 +179,9 @@ function rushNext(newSize){
     botonX.setAttribute("max", newSize);
     botonY.setAttribute("max", newSize);
     partida.start(newSize);
+    stats.setSize(newSize);
     stats.statInicial(3, partida.getEnemiesMax(), partida.getStarsMax(), partida.getDoublePointsMax(), partida.getHalfEnemiesMax(), partida.getExtraLifeMax());
     console.log(partida.printTablaTest());
-    stats.setSize(newSize);
     stats.actualizarStats();
 }
 
