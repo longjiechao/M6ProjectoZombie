@@ -568,6 +568,7 @@ var partida = {
     //funcion donde quita la mitad de los zombies
     quitarMitadZombie : function(num){
         var n = Math.floor(num/2);
+        var num = n;
         for(i = 0; i < this.enemies.length; i++){
             if(this.enemies[i].getEstado() == "z"){
                 if(n > 0){
@@ -578,10 +579,10 @@ var partida = {
                     coord[1] -=1;
                     this.matriz[coord[0]][coord[1]] = this.enemies[i].getEstado();
                     n--;
-                    stats.enemigoActualMitad(n);
                 }
             }
         }
+        stats.enemigoActualMitad(num);
         console.log(this.enemies);
     },
     
